@@ -15,8 +15,9 @@ export class ChordDisplayComponent implements OnInit {
 
   ngOnInit() {
     this.subscription = this.sendChordService.chord.subscribe(
-      chord => this.chords.push(chord)
+      chord => {
+        this.chords.push(chord)
+      }
     );
   }
-
 }

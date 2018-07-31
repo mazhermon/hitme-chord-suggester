@@ -1,9 +1,8 @@
-<p>
-  chord-display works!
-</p>
-
-<ul>
-  <li *ngFor="let chord of chords">
+<ul
+  class="hm-chord-display__chords-list">
+  <li
+    class="hm-chord-display__chords-list-item" 
+    *ngFor="let chord of chords">
     {{ chord }}
   </li>
 </ul>

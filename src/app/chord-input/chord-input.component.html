@@ -4,7 +4,7 @@
 <button
   *ngFor="let n of [1,2,3,4,5,6,7]"
   class="hm-chord-input__button"
-  [value]="n"
+  [value]="n - 1"
   (click)="onChordSelect($event)">
   {{ n }}
 </button>
