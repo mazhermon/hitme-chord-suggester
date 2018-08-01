@@ -4,7 +4,7 @@ import { SendChordService } from '../services/send-chord.service';
 @Component({
   selector: 'hm-chord-input',
   templateUrl: './chord-input.component.html',
-  styleUrls: ['./chord-input.component.css']
+  styleUrls: ['./chord-input.component.scss']
 })
 export class ChordInputComponent implements OnInit {
 

@@ -5,7 +5,7 @@ import { SendChordService }  from '../services/send-chord.service';
 @Component({
   selector: 'hm-chord-display',
   templateUrl: './chord-display.component.html',
-  styleUrls: ['./chord-display.component.css']
+  styleUrls: ['./chord-display.component.scss']
 })
 export class ChordDisplayComponent implements OnInit {
 
