@@ -1,3 +1,8 @@
 :host {
     display: block;
 }
+
+//global styles
+::ng-deep body {
+    font-family: 'Libre Baskerville', Arial, Helvetica, sans-serif;
+}

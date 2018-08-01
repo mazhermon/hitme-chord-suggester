@@ -4,8 +4,10 @@
 
 ul {
     display: flex;
+    list-style: none;
 
     li {
-        border: 1px solid blue;
+        font-weight: bold;
+        font-size: 2rem;
     }
 }
