@@ -1,8 +1,11 @@
-:host {
+//global styles
+// all other components will use view encapsulation
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+app-root {
     display: block;
 }
 
-//global styles
-::ng-deep body {
+body {
     font-family: 'Libre Baskerville', Arial, Helvetica, sans-serif;
 }

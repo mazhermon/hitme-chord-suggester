@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SendChordService }  from '../services/send-chord.service';
+import { ChordService }  from '../services/chord.service';
 
 @Component({
   selector: 'hm-chord-display',
@@ -9,12 +9,12 @@ import { SendChordService }  from '../services/send-chord.service';
 })
 export class ChordDisplayComponent implements OnInit {
 
-  chords: string[] = [];
+  chords: Array<string> = [];
   subscription: Subscription;
-  constructor( public sendChordService: SendChordService) { }
+  constructor( public chordService: ChordService) { }
 
   ngOnInit() {
-    this.subscription = this.sendChordService.chord.subscribe(
+    this.subscription = this.chordService.chord.subscribe(
       chord => {
         this.chords.push(chord)
       }

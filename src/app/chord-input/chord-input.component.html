@@ -1,10 +1,14 @@
-<p>
-  chord-input works!
-</p>
-<button
-  *ngFor="let n of [1,2,3,4,5,6,7]"
-  class="hm-chord-input__button"
-  [value]="n - 1"
-  (click)="onChordSelect($event)">
-  {{ n }}
-</button>
+<ul class="hm-chord-input__button-list">
+  <li
+    *ngFor="let n of [1,2,3,4,5,6,7]"
+    class="hm-chord-input__button-list-item">
+    <button
+      mat-stroked-button
+      color="primary"
+      class="hm-chord-input__button"
+      [value]="n - 1"
+      (click)="onChordSelect($event)">
+      {{ n }}
+    </button>
+  </li>
+</ul>

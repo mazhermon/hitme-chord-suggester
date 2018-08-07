@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SendChordService {
+export class ChordService {
 
   public chord = new Subject<string>();
   
@@ -15,9 +15,7 @@ export class SendChordService {
     private _modesService:ModesService
   ) {}
 
-  sendChord(chordNumeral: string) {
-    //let rootNote = this.keys[0].scale[chordNumeral];
-    
+  sendChord(chordNumeral: string) {    
     let rootNote = this._keysService.getKey(0).scale[chordNumeral];
     let quality = this._modesService.getMode(0).scale[chordNumeral];
     this.chord.next(rootNote + quality);

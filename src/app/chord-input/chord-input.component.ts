@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SendChordService } from '../services/send-chord.service';
+import { ChordService } from '../services/chord.service';
 
 @Component({
   selector: 'hm-chord-input',
@@ -8,13 +8,13 @@ import { SendChordService } from '../services/send-chord.service';
 })
 export class ChordInputComponent implements OnInit {
 
-  constructor( public sendChordService: SendChordService) { }
+  constructor( public chordService: ChordService) { }
 
   ngOnInit() {
   }
 
   onChordSelect(event) {
-    this.sendChordService.sendChord(event.target.value);
+    this.chordService.sendChord(event.target.value);
   }
 
 }

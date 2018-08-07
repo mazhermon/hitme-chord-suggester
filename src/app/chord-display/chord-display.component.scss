@@ -1,12 +1,17 @@
 :host {
     display: block;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
 }
 
-ul {
+.hm-chord-display__chords-list {
     display: flex;
+    flex-flow: row wrap;
     list-style: none;
+    margin: 0 auto;
+    padding: 0;
 
-    li {
+    .hm-chord-display__chords-list-item {
         font-weight: bold;
         font-size: 2rem;
     }

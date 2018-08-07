@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { SendChordService } from './send-chord.service';
+import { ChordService } from './chord.service';
 
 describe('SendChordService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SendChordService]
+      providers: [ChordService]
     });
   });
 
-  it('should be created', inject([SendChordService], (service: SendChordService) => {
+  it('should be created', inject([ChordService], (service: ChordService) => {
     expect(service).toBeTruthy();
   }));
 });
