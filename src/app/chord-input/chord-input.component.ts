@@ -7,14 +7,14 @@ import { ChordService } from '../services/chord.service';
   styleUrls: ['./chord-input.component.scss']
 })
 export class ChordInputComponent implements OnInit {
-
+  
   constructor( public chordService: ChordService) { }
 
   ngOnInit() {
   }
 
   onChordSelect(event) {
-    this.chordService.sendChord(event.target.value);
+    this.chordService.sendChord(event.currentTarget.value);
   }
 
 }

@@ -8,7 +8,11 @@
       class="hm-chord-input__button"
       [value]="n - 1"
       (click)="onChordSelect($event)">
-      {{ n }}
+      {{ n | roman }}
     </button>
   </li>
 </ul>
+
+<hr />
+
+{{test}}
