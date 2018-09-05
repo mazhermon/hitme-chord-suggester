@@ -1,11 +1,13 @@
 <mat-toolbar
-    color="primary"
-    class="">
-    <a 
-        routerLink="/"
-        class="app-root__toolbar">
-        <mat-icon>audiotrack</mat-icon>
-    </a>
+    class="app-root__toolbar">
+    <nav
+        class="app-root__nav">
+        <a
+            routerLink="/">
+            <mat-icon>audiotrack</mat-icon>
+        </a>
+    </nav>
+
     <!--<ul
         class="__right-links">
         <li>
@@ -17,4 +19,6 @@
     </ul>-->
 </mat-toolbar>
 <hm-chord-display></hm-chord-display>
+<hm-hitme></hm-hitme>
 <hm-chord-input></hm-chord-input>
+<footer></footer>

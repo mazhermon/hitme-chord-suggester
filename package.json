@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "lint:scss": "stylelint \"**/*.scss\" --fix",
     "e2e": "ng e2e",
-    "format:scss": "prettier-stylelint \"**/*.scss\" --write && npm run lint:scss"
+    "format:scss": "prettier-stylelint \"**/*.scss\" --write --quiet && npm run lint:scss"
   },
   "private": true,
   "dependencies": {

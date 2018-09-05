@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { ChordDisplayComponent } from './chord-display/chord-display.component';
 import { ChordInputComponent } from './chord-input/chord-input.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HitmeComponent } from './hitme/hitme.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     ChordDisplayComponent,
     ChordInputComponent,
-    RomanPipe
+    RomanPipe,
+    HitmeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,19 +1,21 @@
 :host {
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .hm-chord-input__button-list {
     display: flex;
     justify-content: space-around;
+    padding-left: 0;
     list-style: none;
 }
 
 .hm-chord-input__button-list-item {
     flex: 1;
     margin-right: 0.2rem;
+
     :last-of-type {
         margin-right: 0;
     }
@@ -21,6 +23,7 @@
 
 .hm-chord-input__button {
     padding: 1rem;
+    color: var(--black);
     font-size: 2rem;
     font-weight: bold;
 }
