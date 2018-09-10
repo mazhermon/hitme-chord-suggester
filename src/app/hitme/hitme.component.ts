@@ -1,6 +1,7 @@
 import { Chord } from './../models/chord.model';
 import { ChordService } from './../services/chord.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'hm-hitme',
@@ -9,16 +10,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HitmeComponent implements OnInit {
 
+  public inputMode = true;
+  private userChords: Array<Chord> = [];
+  private hitmeChords: Array<Chord>;
+  private chords$: Subscription;
+  private userChordsCache: Array<Array<Chord>> = [];
+
   constructor(
-    private _chordService: ChordService
-  ) { }
+    public chordService: ChordService,
+  ){}
 
   ngOnInit() {
+    this.chords$ = this.chordService.chord.subscribe(
+      chord => {
+        this.userChords.push(chord);
+        this.inputMode = true;
+      }
+    );
   }
 
   onHitMe(): void {
-    // trigger a hit
-    this._chordService.hit.next(true)
+    let progression = [...this.userChords];
+    this.inputMode = false;
+    this.userChordsCache.push(progression);
+    this.hitmeChords = this.chordService.hitMe(progression);
   }
 
+  get chordsToDisplay(): Array<Chord> {
+    return this.inputMode ? this.userChords : this.hitmeChords;
+  }
+
+  ngOnDestroy() {
+    this.chords$.unsubscribe();
+  }
 }

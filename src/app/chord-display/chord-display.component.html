@@ -1,11 +1,9 @@
 <ul
   class="hm-chord-display__chords-list">
   <li
-    class="hm-chord-display__chords-list-item" 
-    *ngFor="let chord of chords">
-    <span
-      class="hm-chord-display__root-note">{{ chord.rootNote }}</span>
-    <span
-      class="hm-chord-display__quality">{{ chord.quality }}</span>
+    class="hm-chord-display__chords-list-item"
+    *ngFor="let chord of displayChords">
+    <span class="hm-chord-display__root-note">{{ chord.rootNote }}</span>
+    <span class="hm-chord-display__quality">{{ chord.quality }}</span>
   </li>
 </ul>

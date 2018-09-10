@@ -23,7 +23,10 @@ app-root {
 body {
     margin: 0;
     background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    font-family: 'Anton', Helvetica, Arial, sans-serif;
 }
+
+// end setup - move the above to a reset file
 
 :root {
     --white: #f9f9f9;
@@ -34,6 +37,8 @@ body {
 
 app-root {
     display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 1fr 50px;
     background: linear-gradient(
         135deg,
         rgba(249, 249, 249, 0.37) 2%,
@@ -41,37 +46,18 @@ app-root {
         rgba(222, 229, 219, 0.58) 56%,
         rgba(222, 229, 219, 0.75) 100%
     );
-    grid-gap: 1.5rem;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: 50px 6fr 1fr 1fr 3fr;
 }
 
-body {
-    font-family: 'Anton', Helvetica, Arial, sans-serif;
-}
-
-// Main Layout
-//===========================================
-mat-toolbar {
+header {
     grid-column: 1 / -1;
     grid-row: 1 / span 1;
 }
 
-hm-chord-display {
-    grid-column: 1 / -1;
-    grid-row: 2;
-}
-
-hm-hitme {
-    grid-column: 3 / 6;
-    grid-row: -3 / span 1;
-}
-
-hm-chord-input {
-    grid-column: 1 / -1;
-    grid-row: -2 / span 1;
+main {
+    grid-row: 2 / span 1;
 }
 
 footer {
     grid-row: -1 / span 1;
+    background: var(--black);
 }
