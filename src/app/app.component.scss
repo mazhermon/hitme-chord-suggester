@@ -33,19 +33,27 @@ body {
     --mint: #dee5db;
     --purpleLight: #dfdbe5;
     --black: #50524f;
+
+    --blue1: #6CABFF;
+    --turq: #7AE8E0;
+
+    --pink: #FF83D2;
+    --green: #99FFB3;
 }
 
 app-root {
+    position: relative;
+    overflow: hidden;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 50px 1fr 50px;
     background: linear-gradient(
         135deg,
-        rgba(249, 249, 249, 0.37) 2%,
-        rgba(249, 249, 249, 0.39) 6%,
-        rgba(222, 229, 219, 0.58) 56%,
-        rgba(222, 229, 219, 0.75) 100%
+        var(--turq)     2%,
+        var(--blue1)    100%
     );
+
+    
 }
 
 header {
@@ -59,5 +67,4 @@ main {
 
 footer {
     grid-row: -1 / span 1;
-    background: var(--black);
 }

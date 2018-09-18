@@ -1,6 +1,6 @@
 import { Chord } from './../models/chord.model';
 import { ChordService } from './../services/chord.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -15,6 +15,8 @@ export class HitmeComponent implements OnInit {
   private hitmeChords: Array<Chord>;
   private chords$: Subscription;
   private userChordsCache: Array<Array<Chord>> = [];
+
+  @HostBinding('class.hm-hitme--gradient-overlay-active') public overlayGradientVisible = false;
 
   constructor(
     public chordService: ChordService,
@@ -34,6 +36,7 @@ export class HitmeComponent implements OnInit {
     this.inputMode = false;
     this.userChordsCache.push(progression);
     this.hitmeChords = this.chordService.hitMe(progression);
+    this.overlayGradientVisible = !this.overlayGradientVisible;
   }
 
   get chordsToDisplay(): Array<Chord> {
