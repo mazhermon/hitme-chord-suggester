@@ -7,14 +7,13 @@
 
 .hm-chord-input__button-list {
     display: flex;
-    justify-content: space-around;
     padding-left: 0;
     list-style: none;
 }
 
 .hm-chord-input__button-list-item {
     flex: 1;
-    margin-right: 0.2rem;
+    //margin-right: 0.2rem;
 
     :last-of-type {
         margin-right: 0;
@@ -22,8 +21,13 @@
 }
 
 .hm-chord-input__button {
-    padding: 1rem;
+    padding: 0.5rem;
     color: white;
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: bold;
+    min-width: 48px; // probs just flag mat buttons as I'm not really using those much
+
+    @media screen and (min-width: 50rem) {
+        font-size: 2rem;
+    }
 }

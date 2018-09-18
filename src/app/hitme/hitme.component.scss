@@ -8,7 +8,7 @@ hm-hitme:host {
 
     &::before {
         content: '';
-        z-index: -1;
+        //z-index: -1;
         position: absolute;
         top: 0; right: 0; bottom: 0; left: 0;
         background: linear-gradient(
@@ -18,7 +18,7 @@ hm-hitme:host {
         transition: transform 0.2s ease-in-out;
         transform:
             scale(3)
-            translate(-120%, -20%)
+            translate(-120%, -120%)
             rotate(-45deg);
     }
 }
@@ -26,24 +26,29 @@ hm-hitme:host {
 .hm-hitme--gradient-overlay-active:host::before {
     transform:
             scale(3)
-            translate(-10%, -20%)
+            translate(-10%, -10%)
             rotate(-45deg);
 }
 
 hm-chord-display {
+    z-index: 1;
     grid-column: 1 / -1;
     grid-row: 1;
 }
 
 .hm-hitme__button {
-    grid-column: 3 / 6;
+    grid-column: 2 / -2;
     grid-row: 2;
 
     width: 100%;
-    padding: 2.2rem;
+    padding: 1.5rem;
     color: white;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 600;
+
+    @media screen and (min-width: 50rem) {
+        font-size: 3rem;
+    }
 }
 
 hm-chord-input {

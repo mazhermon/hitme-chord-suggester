@@ -20,9 +20,16 @@
 }
 
 .hm-chord-display__root-note {
-    font-size: 4.5rem;
+    font-size: 2rem;
+    @media screen and (min-width: 50rem) {
+        font-size: 4.5rem;
+    }
 }
 
 .hm-chord-display__quality {
-    font-size: 3rem;
+    
+    font-size: 1.8rem;
+    @media screen and (min-width: 50rem) {
+        font-size: 3rem;
+    }
 }
