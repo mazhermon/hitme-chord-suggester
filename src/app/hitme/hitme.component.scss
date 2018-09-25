@@ -2,7 +2,7 @@ hm-hitme:host {
     position: relative;
     height: 100%;
     display: grid;
-    grid-gap: 1.5rem;
+    grid-gap: 0.2rem;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 3fr 1fr 1fr;
 
@@ -36,18 +36,36 @@ hm-chord-display {
     grid-row: 1;
 }
 
-.hm-hitme__button {
-    grid-column: 2 / -2;
-    grid-row: 2;
-
-    width: 100%;
-    padding: 1.5rem;
-    color: white;
-    font-size: 2rem;
+.hm-hitme__button,
+.hm-hitme__reset-button {
+    padding: 0.5rem;
+    font-size: 1.5rem;
     font-weight: 600;
+    color: white;
+    width: 100%;
+    align-self: end;
 
     @media screen and (min-width: 50rem) {
-        font-size: 3rem;
+         font-size: 2rem;
+    }
+
+}
+
+.hm-hitme__button {
+    grid-row: 2;
+    grid-column: 2 / span 4;
+
+    @media screen and (min-width: 50rem) {
+        grid-column: 3 / span 2;
+    }
+}
+
+.hm-hitme__reset-button {
+    grid-row: 2;
+    grid-column: 6 / span 1;
+
+    @media screen and (min-width: 50rem) {
+       grid-column: 5;
     }
 }
 

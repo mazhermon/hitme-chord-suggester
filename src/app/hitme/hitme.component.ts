@@ -1,6 +1,6 @@
 import { Chord } from './../models/chord.model';
 import { ChordService } from './../services/chord.service';
-import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -10,13 +10,13 @@ import { Subscription } from 'rxjs';
 })
 export class HitmeComponent implements OnInit {
 
-  public inputMode = true;
+  //public inputMode = true;
   private userChords: Array<Chord> = [];
   private hitmeChords: Array<Chord>;
   private chords$: Subscription;
   private userChordsCache: Array<Array<Chord>> = [];
 
-  @HostBinding('class.hm-hitme--gradient-overlay-active') public overlayGradientVisible = false;
+  @HostBinding('class.hm-hitme--gradient-overlay-active') public inputMode = true;
 
   constructor(
     public chordService: ChordService,
@@ -36,11 +36,17 @@ export class HitmeComponent implements OnInit {
     this.inputMode = false;
     this.userChordsCache.push(progression);
     this.hitmeChords = this.chordService.hitMe(progression);
-    this.overlayGradientVisible = !this.overlayGradientVisible;
+    //this.overlayGradientVisible = !this.overlayGradientVisible;
   }
 
   get chordsToDisplay(): Array<Chord> {
     return this.inputMode ? this.userChords : this.hitmeChords;
+  }
+
+  onClear(): void {
+    this.userChordsCache.push([...this.userChords]);
+    this.userChords = [];
+    this.inputMode = true;
   }
 
   ngOnDestroy() {

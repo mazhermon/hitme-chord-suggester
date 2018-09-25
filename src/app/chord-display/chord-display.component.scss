@@ -16,7 +16,10 @@
 .hm-chord-display__chords-list-item {
     padding: 0.2rem 1rem;
     color: white;
-    font-weight: bold;
+    font-weight: 300;
+    @media screen and (min-width: 50rem) {
+        font-weight: 600;
+    }
 }
 
 .hm-chord-display__root-note {
@@ -27,7 +30,7 @@
 }
 
 .hm-chord-display__quality {
-    
+
     font-size: 1.8rem;
     @media screen and (min-width: 50rem) {
         font-size: 3rem;
