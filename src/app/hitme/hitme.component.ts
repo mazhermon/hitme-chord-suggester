@@ -9,8 +9,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./hitme.component.scss']
 })
 export class HitmeComponent implements OnInit {
-
-  //public inputMode = true;
   private userChords: Array<Chord> = [];
   private hitmeChords: Array<Chord>;
   private chords$: Subscription;
@@ -23,9 +21,9 @@ export class HitmeComponent implements OnInit {
   ){}
 
   ngOnInit() {
-    this.chords$ = this.chordService.chord.subscribe(
-      chord => {
-        this.userChords.push(chord);
+    this.chords$ = this.chordService.chords.subscribe(
+      chords => {
+        this.userChords = chords;
         this.inputMode = true;
       }
     );
@@ -36,7 +34,6 @@ export class HitmeComponent implements OnInit {
     this.inputMode = false;
     this.userChordsCache.push(progression);
     this.hitmeChords = this.chordService.hitMe(progression);
-    //this.overlayGradientVisible = !this.overlayGradientVisible;
   }
 
   get chordsToDisplay(): Array<Chord> {
@@ -45,7 +42,7 @@ export class HitmeComponent implements OnInit {
 
   onClear(): void {
     this.userChordsCache.push([...this.userChords]);
-    this.userChords = [];
+    this.chordService.resetChords();
     this.inputMode = true;
   }
 
