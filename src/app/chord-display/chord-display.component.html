@@ -1,5 +1,7 @@
 <ul
-  class="hm-chord-display__chords-list">
+  class="hm-chord-display__chords-list"
+  @onChangeChords
+  *ngIf="displayChords.length > 0">
   <li
     class="hm-chord-display__chords-list-item"
     *ngFor="let chord of displayChords">
@@ -7,3 +9,4 @@
     <span class="hm-chord-display__quality">{{ chord.quality }}</span>
   </li>
 </ul>
+

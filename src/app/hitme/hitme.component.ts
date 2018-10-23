@@ -1,3 +1,5 @@
+import { animate, AnimationBuilder, style } from '@angular/animations'
+
 import { Chord } from './../models/chord.model';
 import { ChordService } from './../services/chord.service';
 import { Component, OnInit, OnDestroy, HostBinding, Input } from '@angular/core';
@@ -18,6 +20,7 @@ export class HitmeComponent implements OnInit {
 
   constructor(
     public chordService: ChordService,
+    private animationBuilder: AnimationBuilder
   ){}
 
   ngOnInit() {
@@ -29,11 +32,25 @@ export class HitmeComponent implements OnInit {
     );
   }
 
-  onHitMe(): void {
+  onHitMe(test: any): void {
     let progression = [...this.userChords];
     this.inputMode = false;
     this.userChordsCache.push(progression);
     this.hitmeChords = this.chordService.hitMe(progression);
+
+    //see if some of this can be moved outside of here once working
+    const animation = this.animationBuilder.build([
+      style({
+        backgroundColor: 'tomato'
+      }),
+      animate(300, style({
+        backgroundColor: 'deepskyblue'
+      })),
+      animate(300)
+    ]);
+
+    let onHitMePlayer = animation.create(test);
+    onHitMePlayer.play();
   }
 
   get chordsToDisplay(): Array<Chord> {

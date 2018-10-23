@@ -1,11 +1,15 @@
-<hm-chord-display
+<div #test>
+  <hm-chord-display
   [displayChords]="chordsToDisplay">
 </hm-chord-display>
+</div>
+
+
 
 <button
   mat-stroked-button
   class="hm-hitme__button"
-  (click)="onHitMe()">
+  (click)="onHitMe(test)">
   Hit me!
 </button>
 
