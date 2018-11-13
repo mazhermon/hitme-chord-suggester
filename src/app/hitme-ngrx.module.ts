@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { HITME_FEATURE_KEY } from './state/hitme/hitme.reducer';
+import { HitMeReducer, HITME_FEATURE_KEY, INITIAL_STATE } from './state/hitme/hitme.reducer';
 
 @NgModule({
   imports: [
@@ -26,7 +26,6 @@ import { HITME_FEATURE_KEY } from './state/hitme/hitme.reducer';
     ),
     EffectsModule.forFeature([HitMeEffectsService]),
     !environment.production ? StoreDevtoolsModule.instrument() : []
-  ],
-  declarations: []
+  ]
 })
 export class HitmeNgrxModule { }
