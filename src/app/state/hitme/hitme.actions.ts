@@ -20,3 +20,8 @@ export class AddUserChordAction implements Action {
 export class ClearChordsAction implements Action {
     readonly type = HitMeActionTypes.CLEAR_CHORDS;
 }
+
+export type HitMeActions =
+    HitMeWithChordSubsAction
+    | AddUserChordAction
+    | ClearChordsAction;

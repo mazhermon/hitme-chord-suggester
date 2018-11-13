@@ -2,7 +2,7 @@ import { Chord } from "src/app/models/chord.model";
 import { HitMeActions, HitMeActionTypes } from './hitme.actions';
 
 // could refactor to have this live in the hitme dir with the component
-export const HITME_FEATURE_KEY = 'hitme_feature_key';
+export const HITME_FEATURE_KEY = 'hitme';
 
 export interface HitMeState {
     userChords: Array<Chord>,
