@@ -1,6 +1,7 @@
 <ul
   class="hm-chord-display__chords-list">
   <li
+    @chordAnimate
     class="hm-chord-display__chords-list-item"
     *ngFor="let chord of displayChords">
     <span class="hm-chord-display__root-note">{{ chord.rootNote }}</span>
