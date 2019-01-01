@@ -1,16 +1,22 @@
-import { trigger, stagger, style, transition, animate, query } from "@angular/animations";
+import { trigger, style, transition, animate, query, group } from "@angular/animations";
 
 export const chordAnimationTrigger = trigger('chordAnimate', [
     transition(':enter', [
-        style({
-            transform: 'scale(1.2)'
-        }),
-        animate('300ms ease-out')
-    ]),
-    transition(':leave', [
-        animate('200ms cubic-bezier(0.5,-0.5,0.75,1)', style({
-            transform: 'scale(0.2) rotate(-20deg) translate(-400px, -50px)',
-            opacity: 0
-        }))
+        group([
+            query(':self', [
+                style({
+                    transform: 'scale(1.1) translateY(-40px)',
+                    opacity: '0.5'
+                }),
+                animate('200ms ease-out')
+            ]),
+            query('.hm-chord-display__numeral', [
+                style({
+                    transform: 'scale(0.5) translateY(60px)',
+                    opacity: '0.5'
+                }),
+                animate('200ms 20ms ease-out')
+            ])
+        ])
     ])
 ]);

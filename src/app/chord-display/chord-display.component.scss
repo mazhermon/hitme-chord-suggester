@@ -24,6 +24,13 @@
     }
 }
 
+.hm-chord-display__numeral {
+    font-size: 1.2rem;
+    font-weight: normal;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
 .hm-chord-display__root-note {
     font-size: 2rem;
     @media screen and (min-width: 50rem) {
@@ -32,7 +39,6 @@
 }
 
 .hm-chord-display__quality {
-
     font-size: 1.8rem;
     @media screen and (min-width: 50rem) {
         font-size: 3rem;

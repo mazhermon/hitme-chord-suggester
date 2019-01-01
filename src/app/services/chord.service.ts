@@ -12,6 +12,7 @@ import isEqual from 'lodash.isequal';
 export class ChordService {
 
   public chords = new Subject<Array<Chord>>();
+  
   private _chords = [];
 
   constructor(
@@ -42,6 +43,9 @@ export class ChordService {
   }
 
   hitMe (chords: Array<Chord>): Array<Chord> {
+    if (!chords.length) {
+      return;
+    }
     let key = 0;
     let _currentChordsChecker = [];
     let newChords = [];

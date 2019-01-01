@@ -1,12 +1,12 @@
 <ul class="hm-chord-input__button-list">
   <li
-    *ngFor="let n of [1,2,3,4,5,6,7]"
+    *ngFor="let n of [0,1,2,3,4,5,6]"
     class="hm-chord-input__button-list-item">
     <button
       mat-stroked-button
       color="primary"
       class="hm-chord-input__button"
-      [value]="n - 1"
+      [value]="n"
       (click)="onChordSelect($event)">
       {{ n | roman }}
     </button>

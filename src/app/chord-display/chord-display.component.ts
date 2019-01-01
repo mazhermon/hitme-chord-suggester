@@ -1,5 +1,6 @@
 import { Chord } from './../models/chord.model';
 import { Component, Input } from '@angular/core';
+
 import { chordAnimationTrigger } from './chord-display.animation'; 
 
 @Component({
@@ -9,5 +10,5 @@ import { chordAnimationTrigger } from './chord-display.animation';
   animations: [chordAnimationTrigger]
 })
 export class ChordDisplayComponent {
-  @Input() displayChords: Array<Chord> = [];
+  @Input() public displayChords: Array<Chord> = [];
 }

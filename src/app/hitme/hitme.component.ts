@@ -21,6 +21,7 @@ export class HitmeComponent implements OnInit {
   ){}
 
   ngOnInit() {
+    // try using async pipe for this
     this.chords$ = this.chordService.chords.subscribe(
       chords => {
         this.userChords = chords;
