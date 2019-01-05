@@ -2,11 +2,29 @@ import { Chord } from './../models/chord.model';
 import { ChordService } from './../services/chord.service';
 import { Component, OnInit, OnDestroy, HostBinding, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'hm-hitme',
   templateUrl: './hitme.component.html',
-  styleUrls: ['./hitme.component.scss']
+  styleUrls: ['./hitme.component.scss'],
+  animations: [
+    trigger('introText', [
+      transition(':enter', [
+        style({
+          opacity: 0,
+          transform: 'translateY(150px) scale(0.7)'
+        }),
+        animate('200ms ease-out')
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({
+          opacity: 0,
+          transform: 'translateY(150px) scale(0.7)'
+        }))
+      ])
+    ])
+  ]
 })
 export class HitmeComponent implements OnInit {
   private userChords: Array<Chord> = [];
