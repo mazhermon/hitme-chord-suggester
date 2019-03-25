@@ -1,13 +1,8 @@
-<ul
-  class="hm-chord-display__chords-list">
-  <li
-    @chordAnimate
-    class="hm-chord-display__chords-list-item"
-    *ngFor="let chord of displayChords">
+<ul class="hm-chord-display__chords-list">
+  <li @chordAnimate class="hm-chord-display__chords-list-item" *ngFor="let chord of displayChords">
     <div class="hm-chord-display__numeral">{{ chord.numeral | roman }}</div>
     <span class="hm-chord-display__root-note">{{ chord.rootNote }}</span>
     <span class="hm-chord-display__quality">{{ chord.quality }}</span>
+    <div class="hm-chord-display__from-mode">from {{ chord.modeName }}</div>
   </li>
 </ul>
-
-

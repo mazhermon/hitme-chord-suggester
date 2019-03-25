@@ -12,44 +12,46 @@ import isEqual from 'lodash.isequal';
 export class ChordService {
 
   public chords = new Subject<Array<Chord>>();
-  
+
   private _chords = [];
 
   constructor(
-    private _keysService:KeysService,
-    private _modesService:ModesService
-  ) {}
+    private _keysService: KeysService,
+    private _modesService: ModesService
+  ) { }
 
-  sendChord (chordNumeral: string): void {
+  sendChord(chordNumeral: string): void {
     let namedChord: Chord = this.setChord(chordNumeral);
     this._chords.push(namedChord);
     this.chords.next([...this._chords]);
   }
 
-  resetChords () :void {
+  resetChords(): void {
     this._chords = [];
     this.chords.next([...this._chords]);
   }
 
-  setChord (chordNumeral: string, key: number = 0, mode: number = 0) {
+  setChord(chordNumeral: string, key: number = 0, mode: number = 0) {
     let rootNote = this._keysService.getKey(key).scale[chordNumeral];
     let quality = this._modesService.getMode(mode).scale[chordNumeral];
     let numeral = chordNumeral;
+    let modeName = this._modesService.getMode(mode).name;
     return {
       numeral,
       rootNote,
       quality,
+      modeName
     }
   }
 
-  hitMe (chords: Array<Chord>): Array<Chord> {
+  hitMe(chords: Array<Chord>): Array<Chord> {
     if (!chords.length) {
       return;
     }
     let key = 0;
     let _currentChordsChecker = [];
     let newChords = [];
-    for ( let chord of chords ) {
+    for (let chord of chords) {
       let randomMode = this._getRandomMode();
       _currentChordsChecker.push(this.setChord(chord.numeral, key, this._getCurrentMode()));
       // refactor how get current mode is working on previous line
@@ -59,7 +61,7 @@ export class ChordService {
     return isEqual(newChords, _currentChordsChecker) ? this.hitMe(chords) : newChords;
   }
 
-  _getRandomMode (): number {
+  _getRandomMode(): number {
     let randomMode = this._getRandomNumber(6);
     let currentMode = this._getCurrentMode();
     let diceRoll = this._getRandomNumber(6);

@@ -36,6 +36,7 @@ body {
 
     --blue1: #6CABFF;
     --turq: #7AE8E0;
+    --turq-fallback: rgb(79, 214, 205);
 
     --pink: #FF83D2;
     --green: #99FFB3;
@@ -47,6 +48,7 @@ app-root {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 50px 1fr 50px;
+    background: var(--turq-fallback); //fallback
     background: linear-gradient(
         135deg,
         var(--turq)     2%,
