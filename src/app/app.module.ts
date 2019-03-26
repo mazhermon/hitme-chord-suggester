@@ -1,27 +1,18 @@
-import { RomanPipe } from './pipes/roman.pipe';
-import { MaterialModule } from './material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { ChordDisplayComponent } from './chord-display/chord-display.component';
-import { ChordInputComponent } from './chord-input/chord-input.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HitmeComponent } from './hitme/hitme.component';
-
+import { HitmeModule } from './hitme/hitme.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ChordDisplayComponent,
-    ChordInputComponent,
-    RomanPipe,
-    HitmeComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule
+    HitmeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
