@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Store, select } from '@ngrx/store';
 
+import * as fromHitMe from './state/hitme.reducer';
+
 @Component({
   selector: 'hm-hitme',
   templateUrl: './hitme.component.html',
@@ -37,7 +39,7 @@ export class HitmeComponent implements OnInit {
 
   constructor(
     public chordService: ChordService,
-    private store: Store<any>
+    private store: Store<fromHitMe.HitMeState>
   ) { }
 
   ngOnInit() {
@@ -53,15 +55,9 @@ export class HitmeComponent implements OnInit {
     );
 
     // TODO: unsubscribe
-    this.store.pipe(select('hitme')).subscribe(
-      hitme => {
-        if (hitme) {
-          console.log('this input mode', this.inputMode);
-          console.log('state input mode', hitme.inputMode);
-          this.inputMode = hitme.inputMode;
-        }
-      }
-    )
+    this.store.pipe(select(fromHitMe.getUserInputMode)).subscribe(
+      inputMode => this.inputMode = inputMode
+    );
   }
 
   onHitMe(): void {
