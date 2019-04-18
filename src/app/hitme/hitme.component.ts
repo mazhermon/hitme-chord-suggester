@@ -3,6 +3,7 @@ import { ChordService } from './../services/chord.service';
 import { Component, OnInit, OnDestroy, HostBinding, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'hm-hitme',
@@ -32,37 +33,59 @@ export class HitmeComponent implements OnInit {
   private chords$: Subscription;
   private userChordsCache: Array<Array<Chord>> = [];
 
-  @HostBinding('class.hm-hitme--gradient-overlay-active') public inputMode = true;
+  @HostBinding('class.hm-hitme--gradient-overlay-active') public inputMode: boolean;
 
   constructor(
     public chordService: ChordService,
-  ){}
+    private store: Store<any>
+  ) { }
 
   ngOnInit() {
     // try using async pipe for this
     this.chords$ = this.chordService.chords.subscribe(
       chords => {
         this.userChords = chords;
-        this.inputMode = true;
+        this.store.dispatch({
+          type: 'TOGGLE_INPUT_MODE',
+          payload: true
+        });
       }
     );
+
+    // TODO: unsubscribe
+    this.store.pipe(select('hitme')).subscribe(
+      hitme => {
+        if (hitme) {
+          console.log('this input mode', this.inputMode);
+          console.log('state input mode', hitme.inputMode);
+          this.inputMode = hitme.inputMode;
+        }
+      }
+    )
   }
 
   onHitMe(): void {
     let progression = [...this.userChords];
-    this.inputMode = false;
+    this.store.dispatch({
+      type: 'TOGGLE_INPUT_MODE',
+      payload: false
+    });
     this.userChordsCache.push(progression);
     this.hitmeChords = this.chordService.hitMe(progression);
   }
 
   get chordsToDisplay(): Array<Chord> {
     return this.inputMode ? this.userChords : this.hitmeChords;
+
   }
 
   onClear(): void {
     this.userChordsCache.push([...this.userChords]);
     this.chordService.resetChords();
-    this.inputMode = true;
+    this.store.dispatch({
+      type: 'TOGGLE_INPUT_MODE',
+      payload: true
+    });
   }
 
   ngOnDestroy() {
