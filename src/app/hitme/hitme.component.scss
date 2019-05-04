@@ -52,13 +52,22 @@ hm-hitme:host {
         line-height: 1.8rem;
     }
 
+    @media screen and (max-height: 900px) {
+        font-size: 0.7rem;
+    }
+
    .hm-hitme__intro-heading {
         font-size: 1.8rem;
         line-height: 2.2rem;
         margin-bottom: 0.5rem;
+        margin-top: 0;
         @media screen and (min-width: 50rem) {
             font-size: 2.2rem;
             line-height: 2.8rem;
+        }
+
+        @media screen and (max-height: 900px) {
+            font-size: 1.5rem;
         }
    }
 
@@ -69,6 +78,10 @@ hm-hitme:host {
            width: 40px;
            border: 2px solid #fff;
            margin: 30px auto;
+
+           @media screen and (max-height: 900px) {
+                margin: 10px auto;
+            }
        }
    }
 
@@ -94,6 +107,10 @@ hm-chord-display {
 
     @media screen and (min-width: 50rem) {
          font-size: 2rem;
+    }
+
+    @media screen and (max-height: 900px) {
+        font-size: 1rem;
     }
 
 }

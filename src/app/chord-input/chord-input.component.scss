@@ -21,14 +21,25 @@
 }
 
 .hm-chord-input__button {
-    padding: 0.5rem;
+    padding: 0.2rem;
     color: white;
     font-size: 1rem;
     font-weight: bold;
-    min-width: 48px; // probs just flag mat buttons as I'm not really using those much
+    min-width: 40px;
+
+    @media screen and (min-width: 350px) {
+        padding: 0.5rem;
+        min-width: 48px;
+    }
 
     @media screen and (min-width: 50rem) {
         font-size: 2rem;
         padding: 0.5rem 2rem;
     }
+
+    @media screen and (max-height: 900px) {
+        font-size: 0.8rem;
+    }
+
+    
 }
