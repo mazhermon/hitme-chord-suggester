@@ -1,34 +1,22 @@
-<hm-chord-display
-  [displayChords]="chordsToDisplay">
+<hm-chord-display [displayChords]="chordsToDisplay">
 </hm-chord-display>
 
-<div
-  *ngIf="!chordsToDisplay.length"
-  @introText
-  class="hm-hitme__intro-text">
-  <h1
-    class="hm-hitme__intro-heading">
+<div *ngIf="!chordsToDisplay.length" @introText class="hm-hitme__intro-text">
+  <h1 class="hm-hitme__intro-heading">
     Welcome to the Hitme chord suggester
   </h1>
-  <p 
-    class="hm-hitme__intro-subheading">
-    A tool to help make modal interchange easy.
+  <p class="hm-hitme__intro-subheading">
+    A tool to help make modal interchange (chord borrowing) easy.
   </p>
   <p>Enter a chord progression using the roman numerals below, like a II V I.</p>
   <p>Then 'hitme!' for other chords ideas you might like to try instead.</p>
 </div>
 
-<button
-  mat-stroked-button
-  class="hm-hitme__button"
-  (click)="onHitMe()">
+<button mat-stroked-button class="hm-hitme__button" (click)="onHitMe()">
   Hit me!
 </button>
 
-<button
-  mat-stroked-button
-  class="hm-hitme__reset-button"
-  (click)="onClear()">
+<button mat-stroked-button class="hm-hitme__reset-button" (click)="onClear()">
   reset
 </button>
 
