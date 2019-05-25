@@ -1,11 +1,15 @@
-import { Chord } from './../models/chord.model';
-import { ChordService } from './../services/chord.service';
-import { Component, OnInit, OnDestroy, HostBinding, Input } from '@angular/core';
-import { Subscription } from 'rxjs';
+
+import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { Subscription, Subject } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
+import { Chord } from './../models/chord.model';
+import { ChordService } from './../services/chord.service';
+
 import * as fromHitMe from './state/hitme.reducer';
+import * as hitMeActions from './state/hitme.actions';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'hm-hitme',
@@ -29,12 +33,15 @@ import * as fromHitMe from './state/hitme.reducer';
     ])
   ]
 })
-export class HitmeComponent implements OnInit {
+export class HitmeComponent implements OnInit, OnDestroy {
   private userChords: Array<Chord> = [];
   private hitmeChords: Array<Chord>;
-  private chords$: Subscription;
-  private userChordsCache: Array<Array<Chord>> = [];
+  private inputModeSubscription: Subscription;
+  private userChordsSubscription: Subscription;
+  private hitmeChordsSubscription: Subscription;
+  private destoryed$: Subject<void> = new Subject();
 
+  // change this to use state and do from the app component
   @HostBinding('class.hm-hitme--gradient-overlay-active') public inputMode: boolean;
 
   constructor(
@@ -43,48 +50,47 @@ export class HitmeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // try using async pipe for this
-    this.chords$ = this.chordService.chords.subscribe(
-      chords => {
-        this.userChords = chords;
-        this.store.dispatch({
-          type: 'TOGGLE_INPUT_MODE',
-          payload: true
-        });
+    this.userChordsSubscription = this.store.pipe(
+      select(fromHitMe.getUserChords),
+      takeUntil(this.destoryed$)
+    ).subscribe(
+      userChords => {
+        this.userChords = userChords;
+        this.store.dispatch(new hitMeActions.ToggleInputMode(true));
       }
     );
 
-    // TODO: unsubscribe
-    this.store.pipe(select(fromHitMe.getUserInputMode)).subscribe(
+    this.hitmeChordsSubscription = this.store.pipe(
+      select(fromHitMe.getHitmeChords),
+      takeUntil(this.destoryed$)
+    ).subscribe(
+      hitMeChords => this.hitmeChords = hitMeChords
+    );
+
+    this.inputModeSubscription = this.store.pipe(
+      select(fromHitMe.getUserInputMode),
+      takeUntil(this.destoryed$)
+    ).subscribe(
       inputMode => this.inputMode = inputMode
     );
   }
 
   onHitMe(): void {
     let progression = [...this.userChords];
-    this.store.dispatch({
-      type: 'TOGGLE_INPUT_MODE',
-      payload: false
-    });
-    this.userChordsCache.push(progression);
-    this.hitmeChords = this.chordService.hitMe(progression);
+    this.store.dispatch(new hitMeActions.ToggleInputMode(false));
+    this.store.dispatch(new hitMeActions.BorrowChords(progression));
   }
 
   get chordsToDisplay(): Array<Chord> {
     return this.inputMode ? this.userChords : this.hitmeChords;
-
   }
 
-  onClear(): void {
-    this.userChordsCache.push([...this.userChords]);
-    this.chordService.resetChords();
-    this.store.dispatch({
-      type: 'TOGGLE_INPUT_MODE',
-      payload: true
-    });
+  onReset(): void {
+    this.store.dispatch(new hitMeActions.ToggleInputMode(true));
+    this.store.dispatch(new hitMeActions.ResetChords());
   }
 
   ngOnDestroy() {
-    this.chords$.unsubscribe();
+    this.destoryed$.next();
   }
 }

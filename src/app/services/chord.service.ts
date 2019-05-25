@@ -2,9 +2,7 @@ import { Chord } from './../models/chord.model';
 import { ModesService } from './modes.service';
 import { KeysService } from './keys.service';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-
-import isEqual from 'lodash.isequal';
+import { Subject, of, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +18,6 @@ export class ChordService {
     private _modesService: ModesService
   ) { }
 
-  sendChord(chordNumeral: string): void {
-    let namedChord: Chord = this.setChord(chordNumeral);
-    this._chords.push(namedChord);
-    this.chords.next([...this._chords]);
-  }
-
   resetChords(): void {
     this._chords = [];
     this.chords.next([...this._chords]);
@@ -36,15 +28,15 @@ export class ChordService {
     let quality = this._modesService.getMode(mode).scale[chordNumeral];
     let numeral = chordNumeral;
     let modeName = this._modesService.getMode(mode).name;
-    return {
+    return of({
       numeral,
       rootNote,
       quality,
       modeName
-    }
+    });
   }
 
-  hitMe(chords: Array<Chord>): Array<Chord> {
+  hitMe(chords: Array<Chord>): Observable<Array<Chord>> {
     if (!chords.length) {
       return;
     }
@@ -53,12 +45,14 @@ export class ChordService {
     let newChords = [];
     for (let chord of chords) {
       let randomMode = this._getRandomMode();
-      _currentChordsChecker.push(this.setChord(chord.numeral, key, this._getCurrentMode()));
+      //_currentChordsChecker.push(this.setChord(chord.numeral, key, this._getCurrentMode()));
       // refactor how get current mode is working on previous line
-      newChords.push(this.setChord(chord.numeral, key, randomMode));
+      this.setChord(chord.numeral, key, randomMode).subscribe(chord => (newChords.push(chord)));
     }
+
+    return of(newChords);
     //ensure the same progression is not returned
-    return isEqual(newChords, _currentChordsChecker) ? this.hitMe(chords) : newChords;
+    //return isEqual(newChords, _currentChordsChecker) ? of(this.hitMe(chords)) : of(newChords);
   }
 
   _getRandomMode(): number {

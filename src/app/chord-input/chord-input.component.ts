@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { ChordService } from '../services/chord.service';
+import { HitMeState } from '../hitme/state/hitme.reducer';
+import { Store } from '@ngrx/store';
+import * as hitMeActions from '../hitme/state/hitme.actions';
 
 @Component({
   selector: 'hm-chord-input',
@@ -8,9 +10,11 @@ import { ChordService } from '../services/chord.service';
 })
 export class ChordInputComponent {
 
-  constructor( public chordService: ChordService) { }
+  constructor(
+    public store: Store<HitMeState>
+  ) { }
 
   onChordSelect(event) {
-    this.chordService.sendChord(event.currentTarget.value);
+    this.store.dispatch(new hitMeActions.CreateUserChord(event.currentTarget.value));
   }
 }

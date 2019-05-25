@@ -6,6 +6,8 @@ import { ChordInputModule } from '../chord-input/chord-input.module';
 import { MaterialModule } from '../material.module';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './state/hitme.reducer';
+import { HitmeEffects } from './state/hitme.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   imports: [
@@ -13,7 +15,8 @@ import { reducer } from './state/hitme.reducer';
     ChordDisplayModule,
     ChordInputModule,
     MaterialModule,
-    StoreModule.forFeature('hitme', reducer)
+    StoreModule.forFeature('hitme', reducer),
+    EffectsModule.forFeature([HitmeEffects])
   ],
   declarations: [
     HitmeComponent
