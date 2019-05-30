@@ -8,6 +8,7 @@ import { HitmeModule } from './hitme/hitme.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserModule,
     BrowserAnimationsModule,
     HitmeModule,
+    MatSidenavModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({

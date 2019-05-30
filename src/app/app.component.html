@@ -1,18 +1,26 @@
-<!-- <header>
-    <mat-toolbar
-        class="app-root__toolbar">
-        <nav
-            class="app-root__nav">
-            <a
-                routerLink="/">
-                <img src="./assets/maz-image.svg" alt="Maz Hermon">
-            </a>
-        </nav>
-    </mat-toolbar>
-</header> -->
+<mat-sidenav-container class="app-root__container">
 
-<main>
-    <hm-hitme></hm-hitme>
-</main>
+    <mat-sidenav class="app-root__sidebar" mode="over" [(opened)]="sidebarOpened">
+        sidebar content
+    </mat-sidenav>
 
-<!-- <footer></footer> -->
+    <mat-sidenav-content class="app-root__content">
+        <div class="app-root__header">
+            <button class="app-root__sidebar-toggle-button" (click)="onMenuToggle()">
+                <svg class="app-root__sidebar-toggle-svg" viewBox="0 0 38 27">
+                    <title>menu</title>
+                    <g>
+                        <rect width="38" height="5" rx="2.5" ry="2.5" />
+                        <rect y="11" width="38" height="5" rx="2.5" ry="2.5" />
+                        <rect y="22" width="38" height="5" rx="2.5" ry="2.5" />
+                    </g>
+                </svg>
+            </button>
+        </div>
+
+        <main>
+            <hm-hitme></hm-hitme>
+        </main>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
