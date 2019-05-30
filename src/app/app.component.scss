@@ -37,6 +37,7 @@ p {
     --mint: #dee5db;
     --purpleLight: #dfdbe5;
     --black: #313331;
+    --gray-light: #c9cac9;
 
     --blue1: #6CABFF;
     --turq: #7AE8E0;
@@ -76,6 +77,7 @@ footer {
 
 .app-root__sidebar {
     width: 300px;
+    background: var(--gray-light);
 }
 
 .app-root__content {
