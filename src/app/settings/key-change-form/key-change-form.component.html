@@ -1,18 +1,20 @@
-<h2>Global settings</h2>
-<mat-form-field>
-  <mat-label>Key</mat-label>
-  <select matNativeControl>
-    <option value="c">C</option>
-    <option value="c#">C#</option>
-    <option value="d">Db</option>
-  </select>
-</mat-form-field>
+<form>
+  <h2>Global settings</h2>
+  <mat-form-field class="hm-key-change-form__key-name-select">
+    <mat-label>Key</mat-label>
+    <select ngModel name="keyNote" (ngModelChange)="onKeyNoteChange($event)" matNativeControl>
+      <option *ngFor="let key of keysData" value="key.name">{{key.name}}</option>
+    </select>
+  </mat-form-field>
 
-<mat-form-field>
-  <mat-label>Favorite food</mat-label>
-  <mat-select>
-    <mat-option [value]="hi">
-      hi there
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-button-toggle-group (change)="onQualityChange($event)" class="hm-key-change-form__maj-min-toggle"
+    #group="matButtonToggleGroup">
+    <mat-button-toggle value="maj">
+      + major
+    </mat-button-toggle>
+    <mat-button-toggle value="min">
+      - minor
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+  <div class="example-selected-value">Selected value: {{group.value}}</div>
+</form>

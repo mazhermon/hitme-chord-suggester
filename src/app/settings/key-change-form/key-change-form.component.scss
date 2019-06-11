@@ -1,0 +1,13 @@
+
+
+.hm-key-change-form__key-name-select {
+    width: 100%;
+}
+
+.hm-key-change-form__maj-min-toggle {
+    display: flex;
+
+    > mat-button-toggle {
+        flex: 1 0 0%;
+    }
+}
