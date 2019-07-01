@@ -3,59 +3,71 @@ import { ModesService } from './modes.service';
 import { KeysService } from './keys.service';
 import { Injectable } from '@angular/core';
 import { Subject, of, Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { take, flatMap, map, switchMap } from 'rxjs/operators';
+import { KeyCentre, INITIAL_KEY } from '../settings/state/settings.reducer';
+import { Store, select } from '@ngrx/store';
+import * as fromSettings from '../settings/state/settings.reducer';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChordService {
 
-  public chords = new Subject<Array<Chord>>();
-
-  private _chords = [];
-
   constructor(
     private _keysService: KeysService,
-    private _modesService: ModesService
+    private _modesService: ModesService,
+    private _store: Store<fromSettings.State>
   ) { }
 
-  resetChords(): void {
-    this._chords = [];
-    this.chords.next([...this._chords]);
-  }
+  setChord(chordNumeral: string, key: KeyCentre = INITIAL_KEY, mode: number) {
+    let ionianMode = 0; // should do this with an enum
+    let aoleanMode = 5;
+    let modeToGet;
+    if (mode) {
+      modeToGet = mode
+    } else {
+      modeToGet = key.quality === 'maj' ? ionianMode : aoleanMode;
+    }
+    // maybe refactor the above into another function
 
-  setChord(chordNumeral: string, key: number = 0, mode: number = 0) {
-    let rootNote = this._keysService.getKey(key).scale[chordNumeral];
-    let quality = this._modesService.getMode(mode).scale[chordNumeral];
-    let numeral = chordNumeral;
-    let modeName = this._modesService.getMode(mode).name;
-    return of({
-      numeral,
-      rootNote,
-      quality,
-      modeName
-    });
+    let moderesult = this._modesService.getMode(modeToGet);
+    let modeName = moderesult.name;
+    let quality = moderesult.scale[chordNumeral];
+    return this._keysService.getKey(key).pipe(
+      take(1),
+      map(key => {
+        let rootNote = key.scale[chordNumeral];
+        return {
+          numeral: chordNumeral,
+          rootNote: rootNote,
+          quality: quality,
+          key: key,
+          modeName: modeName
+        }
+      })
+    );
   }
 
   hitMe(chords: Array<Chord>): Observable<Array<Chord>> {
     if (!chords.length) {
       return;
     }
-    let key = 0;
-    let _currentChordsChecker = [];
-    let newChords = [];
-    for (let chord of chords) {
-      let randomMode = this._getRandomMode();
-      //_currentChordsChecker.push(this.setChord(chord.numeral, key, this._getCurrentMode()));
-      // refactor how get current mode is working on previous line
-      this.setChord(chord.numeral, key, randomMode).pipe(
-        take(1)
-      ).subscribe(chord => (newChords.push(chord)));
-    }
 
-    return of(newChords);
-    //ensure the same progression is not returned
-    //return isEqual(newChords, _currentChordsChecker) ? of(this.hitMe(chords)) : of(newChords);
+    return this._store.pipe(
+      select(fromSettings.getGlobalKeyCenter),
+      switchMap(globalKey => {
+        let key = globalKey; // get key from state somehow
+        let newChords = [];
+        for (let chord of chords) {
+          let randomMode = this._getRandomMode();
+          this.setChord(chord.numeral, key, randomMode).pipe(
+            take(1)
+          ).subscribe(chord => (newChords.push(chord)));
+        }
+
+        return of(newChords);
+      })
+    )
   }
 
   _getRandomMode(): number {

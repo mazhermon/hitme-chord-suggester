@@ -1,20 +1,30 @@
 <form>
   <h2>Global settings</h2>
-  <mat-form-field class="hm-key-change-form__key-name-select">
-    <mat-label>Key</mat-label>
-    <select ngModel name="keyNote" (ngModelChange)="onKeyNoteChange($event)" matNativeControl>
-      <option *ngFor="let key of keysData" value="key.name">{{key.name}}</option>
-    </select>
-  </mat-form-field>
+  <div class="hm-key-change-form__current-key-display">
+    You're in {{ currentGlobalKey.keyName || 'nah' }}{{ currentGlobalKey.keyQuality }}
+  </div>
 
-  <mat-button-toggle-group (change)="onQualityChange($event)" class="hm-key-change-form__maj-min-toggle"
-    #group="matButtonToggleGroup">
-    <mat-button-toggle value="maj">
-      + major
-    </mat-button-toggle>
-    <mat-button-toggle value="min">
-      - minor
-    </mat-button-toggle>
-  </mat-button-toggle-group>
-  <div class="example-selected-value">Selected value: {{group.value}}</div>
+  <div class="hm-key-change-form__input-group">
+    <div class="hm-key-change-form__input-group-item">
+      <mat-form-field class="hm-key-change-form__key-name-select">
+        <mat-label>Key</mat-label>
+        <select ngModel name="keyNote" (ngModelChange)="onKeyNoteChange($event)" matNativeControl
+          [value]="currentGlobalKey.keyName">
+          <option *ngFor="let key of keysData" [value]="key.name">
+            {{key.name}}</option>
+        </select>
+      </mat-form-field>
+    </div>
+    <div class="hm-key-change-form__input-group-item">
+      <mat-button-toggle-group value="maj" (change)="onQualityChange($event)"
+        class="hm-key-change-form__maj-min-toggle">
+        <mat-button-toggle value="maj">
+          Maj
+        </mat-button-toggle>
+        <mat-button-toggle value="min">
+          min
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
 </form>

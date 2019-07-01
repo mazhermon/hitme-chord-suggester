@@ -8,7 +8,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class AppComponent {
 	// could move this to state if needing more control later 🤔
-	public sidebarOpened = false;
+	public sidebarOpened = true;
 
 	onMenuToggle() {
 		this.sidebarOpened = !this.sidebarOpened;

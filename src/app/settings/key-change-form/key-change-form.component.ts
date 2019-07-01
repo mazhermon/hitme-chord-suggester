@@ -3,9 +3,10 @@ import { Store, select } from '@ngrx/store';
 import * as fromSettings from '../state/settings.reducer';
 import * as settingsActions from '../state/setting.actions';
 import { Key } from 'src/app/models/key.model';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FormGroup, FormControl } from '@angular/forms';
+import { KeyCentre } from '../state/settings.reducer';
 
 @Component({
   selector: 'hm-key-change-form',
@@ -16,6 +17,7 @@ export class KeyChangeFormComponent implements OnInit, OnDestroy {
 
   public keysData: Array<Key>;
   public keyChangeForm: FormGroup;
+  public currentGlobalKey: KeyCentre;
 
   private destroyed$: Subject<void> = new Subject();
 
@@ -24,8 +26,12 @@ export class KeyChangeFormComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.setupKeyInfo();
+  }
+
+  setupKeyInfo(): void {
     this.setupKeysData();
-    //this.setupKeyChangeForm();
+    this.setupCurrentGlobalKey();
   }
 
   setupKeysData(): void {
@@ -37,20 +43,34 @@ export class KeyChangeFormComponent implements OnInit, OnDestroy {
     ).subscribe(keysData => this.keysData = keysData);
   }
 
-  // setupKeyChangeForm(): void {
-  //   this.keyChangeForm = new FormGroup({
-  //     'keyNote': new FormControl('C'),
-  //     'keyQuality': new FormControl('maj')
-
-  //   });
-  // }
-
-  onQualityChange(e): void {
-    console.log(e);
+  setupCurrentGlobalKey(): void {
+    this.store.pipe(
+      select(fromSettings.getGlobalKeyCenter),
+      takeUntil(this.destroyed$)
+    ).subscribe(globalKey => this.currentGlobalKey = globalKey);
   }
 
-  onKeyNoteChange(e): void {
-    console.log('key note change?', e);
+  onQualityChange(e): void {
+    // could get the new scale here before dispatching the action with 
+    // the new scale included
+    // let keyToSend: KeyCentre = {
+    //   name: this.currentGlobalKey.name,
+    //   quality: e.value,
+    //   scale: ['pending']
+    // }
+    this.store.dispatch(new settingsActions.UpdateGobalKeyQuality(e.value))
+    // could dispatch another action here to update the global scale?
+
+    // could just send quality and then get the effect to also get new scale
+  }
+
+  onKeyNoteChange(noteName): void {
+    // let keyToSend: KeyCentre = {
+    //   name: noteName,
+    //   quality: this.currentGlobalKey.quality,
+    //   scale: this.currentGlobalKey.scale
+    // }
+    this.store.dispatch(new settingsActions.UpdateGobalKeyNote(noteName))
   }
 
   ngOnDestroy() {

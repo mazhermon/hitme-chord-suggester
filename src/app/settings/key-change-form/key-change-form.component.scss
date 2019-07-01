@@ -1,4 +1,20 @@
 
+.hm-key-change-form__current-key-display {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.hm-key-change-form__input-group {
+    display: flex;
+}
+
+.hm-key-change-form__input-group-item {
+    flex: 1 1 auto;
+
+    &:first-of-type {
+        width: 30%;
+    }
+}
 
 .hm-key-change-form__key-name-select {
     width: 100%;
@@ -6,8 +22,18 @@
 
 .hm-key-change-form__maj-min-toggle {
     display: flex;
+    margin-left: 0.5rem;
 
-    > mat-button-toggle {
+    mat-button-toggle {
         flex: 1 0 0%;
+        padding: 0.2rem;
+        font-size: 0.8rem;
     }
+    //overrides
+    ::ng-deep .mat-button-toggle-label-content {
+        line-height: 36px;
+        padding: 0;
+    }
+    
 }
+
