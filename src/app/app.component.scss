@@ -22,13 +22,12 @@ app-root {
 
 body {
     margin: 0;
-    font-family: 'Anton', Helvetica, Arial, sans-serif;
     background: var(--turq-fallback); //fallback
-    background: linear-gradient(
-        135deg,
-        var(--turq)     2%,
-        var(--blue1)    100%
-    );
+    font-family: 'Times New Roman', Times, serif;
+}
+
+p {
+    margin: 0 0 0.2rem 0;
 }
 
 // end setup - move the above to a reset file
@@ -37,7 +36,9 @@ body {
     --white: #f9f9f9;
     --mint: #dee5db;
     --purpleLight: #dfdbe5;
-    --black: #50524f;
+    --black: #313331;
+    --gray-light: #c9cac9;
+    --gray-extra-light: #fafafa;
 
     --blue1: #6CABFF;
     --turq: #7AE8E0;
@@ -49,13 +50,7 @@ body {
 
 app-root {
     position: relative;
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 50px 1fr 50px;
-    
-
-    
+    overflow: hidden; 
 }
 
 header {
@@ -70,4 +65,39 @@ main {
 
 footer {
     grid-row: -1 / span 1;
+}
+
+.app-root__container {
+    height: 100%;
+    background: linear-gradient(
+            -45deg,
+            var(--blue1),
+            var(--pink)
+        );
+}
+
+.app-root__sidebar {
+    width: 300px;
+    background: var(--gray-extra-light);
+}
+
+.app-root__content {
+    padding: 1rem;
+    position: relative;
+}
+
+.app-root__header {
+    margin-bottom: 30px;
+}
+
+.app-root__sidebar-toggle-button {
+    background: 0;
+    border: 0;
+}
+
+.app-root__sidebar-toggle-button {
+    fill: white;
+    width: 40px;
+    height: 30px;
+    margin-left: -8px;
 }

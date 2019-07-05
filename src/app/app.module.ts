@@ -8,6 +8,9 @@ import { HitmeModule } from './hitme/hitme.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SettingsModule } from './settings/settings.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,11 @@ import { EffectsModule } from '@ngrx/effects';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     HitmeModule,
+    MatSidenavModule,
+    SettingsModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({

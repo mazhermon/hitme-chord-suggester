@@ -17,9 +17,12 @@ export class HitmeEffects {
     @Effect()
     public createChord$ = this.actions$.pipe(
         ofType(hitMeActions.HitMeActionTypes.CreateUserChord),
-        switchMap((action: hitMeActions.CreateUserChord) => this.chordService.setChord(action.payload).pipe(
-            map((chord: Chord) => (new hitMeActions.CreateUserChordSuccess(chord)))
-        )));
+        switchMap((action: hitMeActions.CreateUserChord) => {
+            let { numeral, key } = action.payload;
+            return this.chordService.setChord(numeral, key).pipe(
+                map((chord: Chord) => (new hitMeActions.CreateUserChordSuccess(chord)))
+            )
+        }));
 
     @Effect() public borrowChords$ = this.actions$.pipe(
         ofType(hitMeActions.HitMeActionTypes.BorrowChords),

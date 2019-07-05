@@ -1,4 +1,4 @@
-import { Chord } from "src/app/models/chord.model";
+import { Chord, ChordSetter } from "src/app/models/chord.model";
 import { Action } from "@ngrx/store";
 
 export enum HitMeActionTypes {
@@ -18,7 +18,7 @@ export class ToggleInputMode implements Action {
 //check type of the payload for this one, number or string?
 export class CreateUserChord {
     readonly type = HitMeActionTypes.CreateUserChord;
-    constructor(public payload: string) { }
+    constructor(public payload: ChordSetter) { }
 }
 
 export class CreateUserChordSuccess {
