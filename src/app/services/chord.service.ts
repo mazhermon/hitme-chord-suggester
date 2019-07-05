@@ -19,7 +19,7 @@ export class ChordService {
     private _store: Store<fromSettings.State>
   ) { }
 
-  setChord(chordNumeral: string, key: KeyCentre = INITIAL_KEY, mode: number) {
+  setChord(chordNumeral: string, key: KeyCentre = INITIAL_KEY, mode: number | null = null) {
     let ionianMode = 0; // should do this with an enum
     let aoleanMode = 5;
     let modeToGet;

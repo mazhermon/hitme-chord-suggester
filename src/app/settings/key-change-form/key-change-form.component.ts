@@ -16,6 +16,7 @@ import { KeyCentre } from '../state/settings.reducer';
 export class KeyChangeFormComponent implements OnInit, OnDestroy {
 
   public keysData: Array<Key>;
+  public keysDataNotes: Array<string>;
   public keyChangeForm: FormGroup;
   public currentGlobalKey: KeyCentre;
 
@@ -40,7 +41,11 @@ export class KeyChangeFormComponent implements OnInit, OnDestroy {
     this.store.pipe(
       select(fromSettings.getKeysData),
       takeUntil(this.destroyed$),
-    ).subscribe(keysData => this.keysData = keysData);
+    ).subscribe(keysData => {
+      this.keysData = keysData;
+      this.keysDataNotes = keysData.map(key => key.name);
+      this.keysDataNotes = Array.from(new Set(this.keysDataNotes));
+    })
   }
 
   setupCurrentGlobalKey(): void {
