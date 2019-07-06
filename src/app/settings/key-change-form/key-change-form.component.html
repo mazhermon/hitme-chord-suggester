@@ -14,7 +14,7 @@
           name="keyNote" 
           (ngModelChange)="onKeyNoteChange($event)" 
           matNativeControl
-          [value]="currentGlobalKey.keyName">
+          [value]="currentGlobalKey.name">
           <option 
             *ngFor="let note of keysDataNotes" 
             [value]="note">
