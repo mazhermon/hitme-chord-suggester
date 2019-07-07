@@ -1,3 +1,5 @@
+$hm-input-break1: 900px;
+
 hm-hitme:host {
     position: relative;
     height: 100%;
@@ -58,7 +60,7 @@ hm-hitme:host {
            margin: 18px 0;
 
            @media screen and (max-height: 600px) {
-                margin: 10px auto;
+                margin: 10px 0;
             }
        }
    }
@@ -69,24 +71,26 @@ hm-chord-display {
     grid-row: 1;
 }
 
+
+
 .hm-hitme__button,
 .hm-hitme__reset-button {
     padding: 0.2rem 0.5rem;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: white;
+    font-size: 1rem;
+    color: #fff;
     width: 100%;
     border-color: rgba(white, 0.3);
 
     @media screen and (max-height: 600px) {
         font-size: 1rem;
     }
-
-    @media screen and (min-width: 50rem) {
-        font-size: 2rem;
-   }
 }
 
+.hm-hitme__button {
+    border: 0;
+    font-weight: 600;
+    background: var(--gradient2);
+}
 
 .hm-hitme__sticky-bottom {
     position: fixed;
@@ -94,7 +98,7 @@ hm-chord-display {
     left: 0; right: 0;
     background: rgba(255,255,255,0.1);
     padding: 1rem;
-    box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.5);
+    box-shadow: var(--shadow-layer-1);
     background: var(--black);
 }
 
@@ -103,8 +107,18 @@ hm-chord-display {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 5px;
 
-    @media screen and (min-width: 600px) {
-        grid-template-columns: 2fr 1fr 8fr;
+    @media screen and (min-width: $hm-input-break1) {
+        grid-template-columns: 8fr 1fr 2fr;
+    }
+}
+
+hm-chord-input {
+    grid-column: 1 / -1;
+
+    @media screen and (min-width: $hm-input-break1) {
+        grid-column: auto;
+        justify-content: flex-end;
+        align-items: flex-end;
     }
 }
 
@@ -115,18 +129,8 @@ hm-chord-display {
     }
 }
 
-.hm-hitme__reset-svg {
-    width:20px;
-    fill: white;
-}
-
-hm-chord-input {
-    grid-row: 2;
-    grid-column: 1 / -1;
-
-    @media screen and (min-width: 600px) {
-        grid-row: 1;
-        grid-column: auto / -1;
-        justify-content: flex-end;
-    }
-}
+// .hm-hitme__reset-svg {
+//     width:10px;
+//     fill: white;
+//     margin-right: 0.5rem;
+// }

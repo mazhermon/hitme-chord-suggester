@@ -1,34 +1,13 @@
 //global styles
 // all other components will use view encapsulation
+
+// change these 2 so they're not using CSS imports :)
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import url('https://fonts.googleapis.com/css?family=Anton');
 
-//get a reset file or do custom
-html {
-    box-sizing: border-box;
-}
 
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
+@import './app-setup-styles';
 
-html,
-body,
-app-root {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    background: var(--turq-fallback); //fallback
-    font-family: 'Times New Roman', Times, serif;
-}
-
-p {
-    margin: 0 0 0.2rem 0;
-}
 
 // end setup - move the above to a reset file
 
@@ -41,11 +20,29 @@ p {
     --gray-extra-light: #fafafa;
 
     --blue1: #6CABFF;
+    --blue2: rgb(45, 98, 168);
     --turq: #7AE8E0;
     --turq-fallback: rgb(79, 214, 205);
 
     --pink: #FF83D2;
     --green: #99FFB3;
+
+    --gradient1: linear-gradient(
+        -45deg,
+        var(--blue1),
+        var(--pink)
+    );
+
+    --gradient2: linear-gradient(
+        -45deg,
+        var(--blue1),
+        var(--blue2)        
+    );
+
+    --shadow-layer-1: 0 -2px 16px rgba(0, 0, 0, 0.5);
+    --shadow-layer-2: 0 -2px 16px rgba(0, 0, 0, 0.5);
+
+    --border-radius: 4px;
 }
 
 app-root {
@@ -69,16 +66,16 @@ footer {
 
 .app-root__container {
     height: 100%;
-    background: linear-gradient(
-            -45deg,
-            var(--blue1),
-            var(--pink)
-        );
+    background: var(--gradient1);
 }
 
 .app-root__sidebar {
     width: 300px;
     background: var(--gray-extra-light);
+
+    @media screen and (max-width: 350px) {
+        width: 270px;
+    }
 }
 
 .app-root__content {
@@ -87,17 +84,38 @@ footer {
 }
 
 .app-root__header {
-    margin-bottom: 30px;
+    margin-bottom: 2rem;
 }
 
-.app-root__sidebar-toggle-button {
+.app-root__sidebar-toggle-button,
+.app-root__sidebar-close-button {
     background: 0;
     border: 0;
+    fill: white;
 }
 
 .app-root__sidebar-toggle-button {
-    fill: white;
     width: 40px;
     height: 30px;
     margin-left: -8px;
+}
+
+.app-root__sidebar-header,
+.app-root__sidebar-close-button {
+    display: flex;
+}
+
+.app-root__sidebar-header {
+    justify-content: flex-end;
+}
+
+.app-root__sidebar-close-button {
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.app-root__sidebar-toggle-button-svg {
+    fill: var(--black);
+    width: 1rem;
+    margin-left: 0.8rem;
 }

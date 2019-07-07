@@ -1,0 +1,26 @@
+//get a reset file or do custom
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body,
+app-root {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background: var(--turq-fallback); //fallback
+    font-family: 'Times New Roman', Times, serif;
+}
+
+p {
+    margin: 0 0 0.2rem 0;
+}

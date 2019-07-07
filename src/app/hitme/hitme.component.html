@@ -7,7 +7,7 @@
       Hit me
     </h1>
     <p class="hm-hitme__intro-subheading">
-      Dad Jams song notes
+      Dad Jams song note book
     </p>
     <p>Enter a progression like a II V I to get started.</p>
 
@@ -17,18 +17,26 @@
 
 <div class="hm-hitme__sticky-bottom">
   <div class="hm-hitme__input-control-grid">
-    <button mat-stroked-button class="hm-hitme__button" (click)="onHitMe()">
-      Hit me
-    </button>
+    <hm-chord-input></hm-chord-input>
+    
+    
 
     <button mat-stroked-button class="hm-hitme__reset-button" (click)="onReset()">
-      <svg class="hm-hitme__reset-svg" id="Layer_1" viewBox="0 0 28.33 28.33">
+      <!-- <svg class="hm-hitme__reset-svg" id="Layer_1" viewBox="0 0 28.33 28.33">
         <title>reset</title>
         <rect x="-4" y="12.5" width="38" height="5" rx="2.5" ry="2.5" transform="translate(-7.05 14.16) rotate(-45)" />
         <rect x="-4" y="12.5" width="38" height="5" rx="2.5" ry="2.5" transform="translate(14.16 -7.05) rotate(45)" />
-      </svg>
+      </svg> -->
+      Reset
     </button>
 
-    <hm-chord-input></hm-chord-input>
+    <button 
+      mat-stroked-button 
+      class="hm-hitme__button" 
+      (click)="onHitMe()">
+      Suggest chords
+    </button>
+
+    
   </div>
 </div>

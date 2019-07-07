@@ -1,12 +1,27 @@
 <mat-sidenav-container class="app-root__container">
 
     <mat-sidenav class="app-root__sidebar" mode="over" [(opened)]="sidebarOpened">
+        <div class="app-root__sidebar-header">
+            <button 
+                class="app-root__sidebar-close-button"
+                (click)="onMenuToggle()">
+                close
+                <svg class="app-root__sidebar-toggle-button-svg" id="Layer_1" viewBox="0 0 28.33 28.33">
+                    <title>close sidebar</title>
+                    <rect x="-4" y="12.5" width="38" height="5" rx="2.5" ry="2.5" transform="translate(-7.05 14.16) rotate(-45)" />
+                    <rect x="-4" y="12.5" width="38" height="5" rx="2.5" ry="2.5" transform="translate(14.16 -7.05) rotate(45)" />
+                </svg>
+            </button>
+        </div>
+        
         <hm-sidebar></hm-sidebar>
     </mat-sidenav>
 
     <mat-sidenav-content class="app-root__content">
         <div class="app-root__header">
-            <button class="app-root__sidebar-toggle-button" (click)="onMenuToggle()">
+            <button 
+                class="app-root__sidebar-toggle-button"
+                (click)="onMenuToggle()">
                 <svg class="app-root__sidebar-toggle-svg" viewBox="0 0 38 27">
                     <title>menu</title>
                     <g>
