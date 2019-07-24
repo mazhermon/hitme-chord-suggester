@@ -1,19 +1,13 @@
-<div class="hm-chord-input__onboard">
-  Enter some chord numbers to get started
-</div>
-
+<ng-content></ng-content>
 <ul class="hm-chord-input__button-list">
   <li
     *ngFor="let n of [0,1,2,3,4,5,6]"
     class="hm-chord-input__button-list-item">
     <button
-      class="hm-chord-input__button"
+      hmButton
       [value]="n"
       (click)="onChordSelect($event)">
-      <span class="hm-chord-input__button-inner">
-          {{ n | roman }}
-      </span>
+        {{ n | roman }}
     </button>
   </li>
 </ul>
-

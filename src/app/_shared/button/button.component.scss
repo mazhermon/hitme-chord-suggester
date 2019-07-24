@@ -1,0 +1,87 @@
+:host {
+    --button-gradient: var(--gradient1);
+    background-image: var(--button-gradient);
+
+    &::before,
+    &::after {
+        content: '';
+        top: var(--scoped-spacer); 
+        right: var(--scoped-spacer); 
+        bottom: var(--scoped-spacer); 
+        left: var(--scoped-spacer);
+    }
+
+    &::before {
+        --scoped-spacer: 2px;
+        background-color: var(--black);
+    }
+
+    &::after {
+        --scoped-spacer: -3px;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed; 
+    }
+}
+
+// Button modifiers
+.hm-button--primary:host {
+    --button-gradient: var(--gradient2);
+    &::before {
+        --scoped-spacer: 4px;
+    }
+}
+
+// do tertiary styles when needed
+//.hm-button--tertiary:host {}
+// end button mods
+
+:host {
+    position: relative;
+    padding: 0.2rem;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    width: 100%;
+    border: 0;
+    border-radius: 34px;
+    outline: none; //a11y replaced
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        border-radius: 34px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    &::after {
+        border: 3px solid rgba(#fff, 0.6);
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+        transform: scale(0.8);
+    }
+
+    &:active::before {
+        transform: scale(0.7);
+    }
+
+    &:focus::after {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.hm-button__inner {
+    position: relative;
+    padding: 0.2rem;
+    line-height: 34px;
+    min-width: 34px;
+    background-color: var(--black);
+    margin: 0.2rem;
+    display: block; 
+    border-radius: 20px;
+}
+

@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducer } from './state/hitme.reducer';
 import { HitmeEffects } from './state/hitme.effects';
 import { EffectsModule } from '@ngrx/effects';
+import { ButtonModule } from '../_shared/button/button.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { EffectsModule } from '@ngrx/effects';
     ChordDisplayModule,
     ChordInputModule,
     MaterialModule,
+    ButtonModule,
     StoreModule.forFeature('hitme', reducer),
     EffectsModule.forFeature([HitmeEffects])
   ],

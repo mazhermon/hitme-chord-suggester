@@ -71,36 +71,45 @@ hm-chord-display {
     grid-row: 1;
 }
 
-
-
-.hm-hitme__button,
-.hm-hitme__reset-button {
-    padding: 0.2rem 0.5rem;
-    font-size: 1rem;
-    color: #fff;
-    width: 100%;
-    border-color: rgba(white, 0.3);
-
-    @media screen and (max-height: 600px) {
-        font-size: 1rem;
-    }
-}
-
-.hm-hitme__button {
-    border: 0;
-    font-weight: 600;
-    background: var(--gradient2);
-}
-
 .hm-hitme__sticky-bottom {
     position: fixed;
+    contain: layout style;
     bottom: 0;
     left: 0; right: 0;
     background: rgba(255,255,255,0.1);
     padding: 1rem;
     box-shadow: var(--shadow-layer-1);
     background: var(--black);
+    border-top-left-radius: 55px;
 }
+
+.hm-hitme__onboard {
+    background: #fff;
+    font-size: 0.8rem;
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+    font-family: sans-serif;
+    position: absolute;
+    top: -4rem;
+    right: 0;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-layer-2);
+    padding: 0.75rem;
+
+    &::after {
+        position: absolute;
+        bottom: -0.5rem;
+        left: 3rem;
+        content: '';
+        height: 1rem;
+        width: 1rem;
+        transform: rotate(45deg);
+        background-color: #fff;
+        border-radius: 2px;
+    }
+}
+
 
 .hm-hitme__input-control-grid {
     display: grid;
@@ -122,15 +131,4 @@ hm-chord-input {
     }
 }
 
-.hm-hitme__reset-button {
-    // override
-    .mat-button-wrapper {
-        display: inline-flex;
-    }
-}
 
-// .hm-hitme__reset-svg {
-//     width:10px;
-//     fill: white;
-//     margin-right: 0.5rem;
-// }

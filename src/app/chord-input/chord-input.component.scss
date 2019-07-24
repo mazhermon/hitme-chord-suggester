@@ -8,17 +8,26 @@
 
 .hm-chord-input__button-list {
     display: flex;
-    justify-content: flex-end;
+    flex-flow: row wrap;
+    justify-content: center;
     padding-left: 0;
     list-style: none;
-    margin: 0;
-    width: 100%;
+    margin: 0 0 0.5rem;
+    width: 300px;
     max-width: 900px;
+
+    @media screen and (min-width: 460px) {
+        width: 100%;
+    }
+
+    @media screen and (min-width: 900px) {
+        justify-content: flex-end;
+    }
 }
 
 .hm-chord-input__button-list-item {
-    flex: 1 0 auto;
-    margin: 0 0.5rem;
+    flex: 0 0 53px;
+    margin: 0 0.25rem;
 }
 
 .hm-chord-input__label {
@@ -27,104 +36,61 @@
     align-items: center;
 }
 
+// TODO: make a button component for these
 .hm-chord-input__button {
     position: relative;
     padding: 0.2rem;
-    // line-height: 34px; // mat button line height
     color: #fff;
     font-size: 1rem;
     font-weight: bold;
     width: 100%;
     border: 0;
-    //min-width: 0;
     border-radius: 34px;
-
     background-image: var(--gradient1);
-    //background-color: var(--black); 
+    outline: none; //a11y replaced
 
-    &::before {
-        --scoped-spacer: 2px;
+    &::before,
+    &::after {
         content: '';
-        background-color: var(--black);
         position: absolute;
         top: var(--scoped-spacer); 
         right: var(--scoped-spacer); 
         bottom: var(--scoped-spacer); 
         left: var(--scoped-spacer);
-
         border-radius: 34px;
         transition: transform 0.2s ease-in-out;
     }
 
-    //&:hover::before,
-    &:active::before {
-        transform: scale(0.5);
-        //animation: hit-me-button-press 1s ease-in-out;
+    &::before {
+        --scoped-spacer: 2px;
+        background-color: var(--black);
     }
 
-    // &::after {
-    //     content: '';
-    //     display: block;
-    //     background: var(--gradient1);
-    // }
+    &::after {
+        --scoped-spacer: -3px;
+        border: 3px solid rgba(#fff, 0.6);
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+        transform: scale(0.8);
+    }
 
-    // @media screen and (min-width: 350px) {
-    //     padding: 0.5rem;
-    //     min-width: 48px;
-    // }
+    &:active::before {
+        transform: scale(0.7);
+    }
 
-    // @media screen and (min-width: 50rem) {
-    //     font-size: 2rem;
-    //     padding: 0.5rem 2rem;
-    // }
-
-    // @media screen and (max-height: 900px) {
-    //     font-size: 0.8rem;
-    // }
+    &:focus::after {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .hm-chord-input__button-inner {
     position: relative;
     padding: 0.2rem;
-    line-height: 34px; // mat button line height
-    //--button-innner-space: 0.2rem;
+    //line-height: 34px;
+    min-width: 34px;
     background-color: var(--black);
     margin: 0.2rem;
     display: block; 
     border-radius: 20px;
-
-    
-}
-
-//line height: 34px from mat button
-
-.hm-chord-input__onboard {
-    background: #fff;
-    font-size: 0.8rem;
-    width: 80%;
-    max-width: 300px;
-    text-align: center;
-    font-family: sans-serif;
-    position: absolute;
-    top: -3.5rem;
-    right: 0;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-layer-2);
-    padding: 0.75rem;
-
-    &::after {
-        position: absolute;
-        bottom: -0.5rem;
-        content: '';
-        height: 1rem;
-        width: 1rem;
-        transform: rotate(45deg);
-        background-color: #fff;
-        border-radius: 2px;
-    }
-}
-
-@keyframes hit-me-button-press {
-    from {transform: scale(1)}
-    to {transform: scale(0.5)}
 }

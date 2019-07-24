@@ -2,7 +2,10 @@
   <hm-chord-display [displayChords]="chordsToDisplay">
   </hm-chord-display>
 
-  <div class="hm-hitme__intro-text" *ngIf="!chordsToDisplay.length" @introText>
+  <div 
+    class="hm-hitme__intro-text"
+    *ngIf="!chordsToDisplay.length"
+    @introText>
     <h1 class="hm-hitme__intro-heading">
       Hit me
     </h1>
@@ -17,26 +20,28 @@
 
 <div class="hm-hitme__sticky-bottom">
   <div class="hm-hitme__input-control-grid">
-    <hm-chord-input></hm-chord-input>
-    
-    
-
-    <button mat-stroked-button class="hm-hitme__reset-button" (click)="onReset()">
-      <!-- <svg class="hm-hitme__reset-svg" id="Layer_1" viewBox="0 0 28.33 28.33">
-        <title>reset</title>
-        <rect x="-4" y="12.5" width="38" height="5" rx="2.5" ry="2.5" transform="translate(-7.05 14.16) rotate(-45)" />
-        <rect x="-4" y="12.5" width="38" height="5" rx="2.5" ry="2.5" transform="translate(14.16 -7.05) rotate(45)" />
-      </svg> -->
+    <hm-chord-input>
+      <div 
+        *ngIf="!chordsToDisplay.length"
+        class="hm-hitme__onboard"
+        @popout>
+        Enter some chord numbers to get started
+      </div>
+    </hm-chord-input>
+    <button 
+      hmButton
+      class="hm-hitme__reset-button"
+      (click)="onReset()"
+      [disabled]="!chordsToDisplay.length">
       Reset
     </button>
 
     <button 
-      mat-stroked-button 
+      hmButton="primary"
       class="hm-hitme__button" 
-      (click)="onHitMe()">
-      Suggest chords
+      (click)="onHitMe()"
+      [disabled]="!chordsToDisplay.length">
+      Suggest
     </button>
-
-    
   </div>
 </div>

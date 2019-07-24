@@ -30,6 +30,21 @@ import { takeUntil } from 'rxjs/operators';
           transform: 'translateY(150px) scale(0.7)'
         }))
       ])
+    ]),
+    trigger('popout', [
+      transition(':enter', [
+        style({
+          opacity: 0,
+          transform: 'translateY(10px) scale(0.8)'
+        }),
+        animate('200ms ease-out')
+      ]),
+      transition(':leave', [
+        animate('200ms cubic-bezier(.58,-0.45,.67,.99)', style({
+          opacity: 0,
+          transform: 'translateY(10px) scale(0.8)'
+        }))
+      ])
     ])
   ]
 })
