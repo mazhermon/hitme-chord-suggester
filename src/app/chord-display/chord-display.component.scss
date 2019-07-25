@@ -56,3 +56,19 @@
     text-align: center;
     font-family: serif;
 }
+
+.hm-chord-display--compact:host {
+    .hm-chord-display__root-note {
+        font-size: 1.5rem;
+        @media screen and (min-width: 50rem) {
+            font-size: 2.5rem;
+        }
+    }
+    
+    .hm-chord-display__quality {
+        font-size: 1rem;
+        @media screen and (min-width: 50rem) {
+            font-size: 2rem;
+        }
+    }
+}
