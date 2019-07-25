@@ -27,7 +27,7 @@ hm-hitme:host {
     max-width: 20ch;
 
     @media screen and (min-width: 50rem) {
-        grid-column: 2 / 7;
+        //grid-column: 2 / 7;
         font-size: 1.2rem;
         line-height: 1.8rem;
     }
@@ -35,35 +35,23 @@ hm-hitme:host {
     @media screen and (max-height: 600px) {
         font-size: 0.7rem;
     }
+}
 
-   .hm-hitme__intro-heading {
-        font-size: 1.5rem;
-        line-height: 2.2rem;
-        margin-bottom: 0.5rem;
-        margin-top: 0;
-        @media screen and (min-width: 50rem) {
-            font-size: 2.2rem;
-            line-height: 2.8rem;
-        }
+.hm-hitme__intro-heading {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    margin: 0;
+    @media screen and (min-width: 50rem) {
+        font-size: 2.2rem;
+        line-height: 2.8rem;
+    }
+}
 
-        @media screen and (max-height: 600px) {
-            font-size: 1.5rem;
-        }
-   }
-
-   .hm-hitme__intro-subheading {
-       &::after {
-           content: '';
-           display: block;
-           width: 40px;
-           border: 2px solid #fff;
-           margin: 18px 0;
-
-           @media screen and (max-height: 600px) {
-                margin: 10px 0;
-            }
-       }
-   }
+.hm-hitme__intro-subheading {
+    margin-top: -0.5rem;
+    @media screen and (min-width: 50rem) {
+        font-size: 0.9rem;
+    }
 }
 
 hm-chord-display {
@@ -84,9 +72,8 @@ hm-chord-display {
 }
 
 .hm-hitme__onboard {
-    background: #fff;
+    background: var(--gray-extra-light);
     font-size: 0.8rem;
-    width: 80%;
     max-width: 300px;
     text-align: center;
     font-family: sans-serif;
@@ -105,7 +92,7 @@ hm-chord-display {
         height: 1rem;
         width: 1rem;
         transform: rotate(45deg);
-        background-color: #fff;
+        background-color: var(--gray-extra-light);
         border-radius: 2px;
     }
 }

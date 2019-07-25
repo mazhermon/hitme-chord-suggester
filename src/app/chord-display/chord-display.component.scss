@@ -33,7 +33,6 @@
     font-size: 1.2rem;
     font-weight: normal;
     text-align: center;
-    //letter-spacing: 2px;
 }
 
 .hm-chord-display__root-note {
@@ -58,6 +57,12 @@
 }
 
 .hm-chord-display--compact:host {
+
+    .hm-chord-display__numeral,
+    .hm-chord-display__from-mode {
+        font-size: 0.6rem;
+    }
+
     .hm-chord-display__root-note {
         font-size: 1.5rem;
         @media screen and (min-width: 50rem) {
