@@ -49,6 +49,9 @@ import { takeUntil } from 'rxjs/operators';
   ]
 })
 export class HitmeComponent implements OnInit, OnDestroy {
+
+  public inputBarIsDismissed = false;
+  
   private userChords: Array<Chord> = [];
   private hitmeChords: Array<Chord>;
   private inputModeSubscription: Subscription;

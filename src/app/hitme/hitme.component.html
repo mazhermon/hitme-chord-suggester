@@ -17,7 +17,12 @@
 </div>
 
 
-<div class="hm-hitme__sticky-bottom">
+<div 
+  class="hm-hitme__sticky-bottom"
+  [class.hm-hitme__sticky-bottom--dismissed]="inputBarIsDismissed">
+  <button class="hm-hitme__input-dismiss-button">
+    hi
+  </button>
   <div class="hm-hitme__input-control-grid">
     <hm-chord-input>
       <div 

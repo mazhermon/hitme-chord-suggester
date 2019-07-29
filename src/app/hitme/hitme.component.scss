@@ -6,6 +6,19 @@ hm-hitme:host {
     //font-family: 'Anton', Helvetica, Arial, sans-serif;
 }
 
+.hm-hitme__input-dismiss-button {
+    position: absolute;
+    top: -2rem;
+    right: 0;
+    height: 2rem;
+    width: 3rem;
+    color: #fff;
+    border-top-left-radius: 50px;
+    background: var(--black);
+    box-shadow: var(--shadow-layer-1);
+    border: 0;
+}
+
 .hm-hitme__chords-display-grid {
     display: grid;
     grid-gap: 0.2rem;
@@ -64,11 +77,16 @@ hm-chord-display {
     contain: layout style;
     bottom: 0;
     left: 0; right: 0;
-    background: rgba(255,255,255,0.1);
     padding: 1rem;
     box-shadow: var(--shadow-layer-1);
     background: var(--black);
     border-top-left-radius: 55px;
+    will-change: transform;
+    transition: transform;
+}
+
+.hm-hitme__sticky-bottom--dismissed {
+    transform: translateY(90%);
 }
 
 .hm-hitme__onboard {
