@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SongService, Song } from '../services/song.service';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'hm-song-list',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SongListComponent implements OnInit {
 
-  constructor() { }
+  public songs$: Observable<Array<Song>>;
+
+  constructor(
+    private songService: SongService
+  ) { }
 
   ngOnInit() {
+    this.songs$ = this.songService.getSongs();
   }
+
+  trackByName = (index, song: Song) => song.name;
 
 }

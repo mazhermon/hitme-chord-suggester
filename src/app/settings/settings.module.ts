@@ -6,12 +6,14 @@ import { StoreModule } from '@ngrx/store';
 import { reducer } from './state/settings.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { SettingsEffects } from './state/settings.effects';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     SidebarComponent
   ],
   imports: [
+    RouterModule,
     CommonModule,
     KeyChangeFormModule,
     StoreModule.forFeature('userSettings', reducer),

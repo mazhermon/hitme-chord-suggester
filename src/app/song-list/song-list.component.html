@@ -1,3 +1,6 @@
-<p>
-  song-list works!
-</p>
+<h1>Song list</h1>
+<ul class="song-list__songs" *ngIf="songs$ | async as songs">
+    <li *ngFor="let song of songs">
+        <a [routerLink]="['/songlist', song.name]">{{song.name}}</a>
+    </li>
+</ul>

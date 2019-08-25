@@ -1,0 +1,6 @@
+<div *ngIf="song$ | async as song">
+    <h1>{{song.name}}</h1>
+    <hm-chord-display [displayChords]="song.chords"></hm-chord-display>
+</div>
+
+
