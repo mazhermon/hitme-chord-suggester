@@ -1,4 +1,5 @@
 <div class="hm-hitme__chords-display-grid">
+  <h2 *ngIf="songName">{{songName}}</h2>
   <hm-chord-display [displayChords]="chordsToDisplay">
   </hm-chord-display>
 
@@ -27,6 +28,15 @@
         Enter some chord numbers to get started
       </div>
     </hm-chord-input>
+
+    <button 
+      hmButton
+      class="hm-hitme__button" 
+      (click)="onHitMe()"
+      [disabled]="!chordsToDisplay.length">
+      Suggest
+    </button>
+
     <button 
       hmButton
       class="hm-hitme__reset-button"
@@ -37,10 +47,12 @@
 
     <button 
       hmButton="primary"
-      class="hm-hitme__button" 
-      (click)="onHitMe()"
+      class="hm-hitme__save-button" 
+      (click)="openSaveSongDialog()"
       [disabled]="!chordsToDisplay.length">
-      Suggest
+      Save
     </button>
+
+    
   </div>
 </div>

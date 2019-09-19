@@ -1,4 +1,36 @@
 hm-sidebar:host {
     display: block;
-    padding: 1rem;
+}
+
+.sidebar__title {
+    font-weight: normal;
+    font-size: 1rem;
+}
+
+.sidebar__close-button {
+    background: 0;
+    border: 0;
+}
+
+.sidebar__toggle-button-svg {
+    width: 12px;
+    height: 12px;
+    position: relative;
+    top: 3px;
+}
+
+.sidebar__nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    > li {
+        border-bottom: 1px solid gray; // choose color;
+
+        a {
+            display: block;
+            padding: 1rem;
+            text-decoration: none;
+        }
+    }
 }

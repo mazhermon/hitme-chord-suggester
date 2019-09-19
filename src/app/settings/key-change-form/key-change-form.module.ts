@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { TitleBarModule } from 'src/app/_shared/title-bar/title-bar.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MatButtonToggleModule,
     FormsModule,
     ReactiveFormsModule,
+    TitleBarModule
 
   ],
   declarations: [

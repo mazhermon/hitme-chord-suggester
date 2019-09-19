@@ -23,7 +23,7 @@ hm-hitme:host {
     font-size: 1rem;
     line-height: 1.4rem;
     font-weight: normal;
-    font-family: sans-serif;
+    //font-family: sans-serif;
     max-width: 20ch;
 
     @media screen and (min-width: 50rem) {
@@ -38,11 +38,12 @@ hm-hitme:host {
 }
 
 .hm-hitme__intro-heading {
-    font-size: 1.6rem;
+    font-family: var(--font-serif);    
+    font-size: 1.8rem;
     line-height: 2.2rem;
     margin: 0;
     @media screen and (min-width: 50rem) {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
         line-height: 2.8rem;
     }
 }
@@ -76,7 +77,7 @@ hm-chord-display {
     font-size: 0.8rem;
     max-width: 300px;
     text-align: center;
-    font-family: sans-serif;
+    //font-family: sans-serif;
     position: absolute;
     top: -4rem;
     right: 0;
@@ -100,11 +101,11 @@ hm-chord-display {
 
 .hm-hitme__input-control-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 5px;
 
     @media screen and (min-width: $hm-input-break1) {
-        grid-template-columns: 8fr 1fr 2fr;
+        grid-template-columns: 8fr 1fr 1fr 1fr;
     }
 }
 

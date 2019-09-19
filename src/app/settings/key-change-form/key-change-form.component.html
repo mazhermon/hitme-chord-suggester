@@ -1,11 +1,11 @@
 <form>
-  <h2>Global settings</h2>
-  <div class="hm-key-change-form__current-key-display">
-    You're in:
-    <div class="hm-key-change-form__current-key-centre">{{ currentGlobalKey.name }}{{ currentGlobalKey.quality }}</div>
-  </div>
-
+  <hm-title-bar class="hm-key-change-form__current-key-display">
+      You're in the key of:
+      <div class="hm-key-change-form__current-key-centre">{{ currentGlobalKey.name }}{{ currentGlobalKey.quality }}</div>
+  </hm-title-bar>
+  
   <div class="hm-key-change-form__input-group">
+    <span>Change key:</span>
     <div class="hm-key-change-form__input-group-item">
       <mat-form-field class="hm-key-change-form__key-name-select">
         <mat-label>Key</mat-label>

@@ -7,14 +7,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDialogModule } from '@angular/material/dialog';
 
 let matComponents = [
   MatButtonModule,
   MatIconModule,
+  
   MatToolbarModule,
   MatInputModule,
   MatCardModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatDialogModule
 ];
 
 @NgModule({

@@ -3,7 +3,7 @@
 
 // change these 2 so they're not using CSS imports :)
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
-@import url('https://fonts.googleapis.com/css?family=Anton');
+//@import url('https://fonts.googleapis.com/css?family=Anton');
 
 
 @import './app-setup-styles';
@@ -12,6 +12,15 @@
 // end setup - move the above to a reset file
 
 :root {
+
+    --font-serif: miller-banner, serif;
+    --font-sans-serif: montserrat, sans-serif;
+    --font-main: var(--font-sans-serif);
+    font-weight: 400;
+    font-style: normal;
+    --font-weight: 400;
+    --font-weight-bold: 700;
+
     --white: #f9f9f9;
     --mint: #dee5db;
     --purpleLight: #dfdbe5;
@@ -43,7 +52,20 @@
     --shadow-layer-2: 0 -2px 16px rgba(0, 0, 0, 0.5);
 
     --border-radius: 4px;
+    --border-radius-med: 30px;
+    --border-radius-big: 55px;
 }
+
+// typography base
+body {
+    font-family: var(--font-main);
+    font-weight: var(--font-weight);
+}
+
+// a,
+// button {
+//     font-family: var(--font-interactive);
+// }
 
 app-root {
     position: relative;
@@ -72,6 +94,7 @@ footer {
 .app-root__sidebar {
     width: 300px;
     background: var(--gray-extra-light);
+    border-top-right-radius: var(--border-radius-med);
 
     @media screen and (max-width: 350px) {
         width: 270px;
@@ -87,8 +110,7 @@ footer {
     margin-bottom: 1rem;
 }
 
-.app-root__sidebar-toggle-button,
-.app-root__sidebar-close-button {
+.app-root__sidebar-toggle-button {
     background: 0;
     border: 0;
     fill: white;

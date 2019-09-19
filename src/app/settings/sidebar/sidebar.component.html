@@ -1,7 +1,22 @@
-<ul>
-    <li><a routerLink="/">Home</a></li>
-    <li><a routerLink="/songlist">Song List</a></li>
-</ul>
-
+<hm-title-bar>
+    <h2 class="sidebar__title">Menu</h2>
+    <button 
+        class="sidebar__close-button"
+        (click)="onMenuToggle()">
+        close
+        <svg class="sidebar__toggle-button-svg" id="Layer_1" viewBox="0 0 28.33 28.33">
+            <title>close sidebar</title>
+            <rect x="-4" y="12.5" width="38" height="5" rx="2.5" ry="2.5" transform="translate(-7.05 14.16) rotate(-45)" />
+            <rect x="-4" y="12.5" width="38" height="5" rx="2.5" ry="2.5" transform="translate(14.16 -7.05) rotate(45)" />
+        </svg>
+    </button>
+</hm-title-bar>
+    
+<nav>
+    <ul class="sidebar__nav-list">
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/songlist">Song List</a></li>
+    </ul>    
+</nav>
 
 <hm-key-change-form></hm-key-change-form>

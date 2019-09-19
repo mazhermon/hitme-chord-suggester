@@ -7,6 +7,7 @@ import { reducer } from './state/settings.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { SettingsEffects } from './state/settings.effects';
 import { RouterModule } from '@angular/router';
+import { TitleBarModule } from '../_shared/title-bar/title-bar.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     KeyChangeFormModule,
     StoreModule.forFeature('userSettings', reducer),
-    EffectsModule.forFeature([SettingsEffects])
+    EffectsModule.forFeature([SettingsEffects]),
+    TitleBarModule
   ],
   exports: [
     SidebarComponent

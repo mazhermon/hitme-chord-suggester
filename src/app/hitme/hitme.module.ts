@@ -9,6 +9,8 @@ import { reducer } from './state/hitme.reducer';
 import { HitmeEffects } from './state/hitme.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { ButtonModule } from '../_shared/button/button.module';
+import { SaveSongDialogComponent } from './save-song-dialog/save-song-dialog.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -16,12 +18,15 @@ import { ButtonModule } from '../_shared/button/button.module';
     ChordDisplayModule,
     ChordInputModule,
     MaterialModule,
+    FormsModule,
     ButtonModule,
     StoreModule.forFeature('hitme', reducer),
     EffectsModule.forFeature([HitmeEffects])
   ],
+  entryComponents: [SaveSongDialogComponent],
   declarations: [
-    HitmeComponent
+    HitmeComponent,
+    SaveSongDialogComponent
   ],
   exports: [
     HitmeComponent

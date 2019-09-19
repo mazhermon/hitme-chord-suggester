@@ -10,7 +10,10 @@ import { ChordService } from './../services/chord.service';
 import * as fromHitMe from './state/hitme.reducer';
 import * as hitMeActions from './state/hitme.actions';
 import { takeUntil } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { SaveSongDialogComponent } from './save-song-dialog/save-song-dialog.component';
 
+// move animation triggers to it's own file
 @Component({
   selector: 'hm-hitme',
   templateUrl: './hitme.component.html',
@@ -58,10 +61,12 @@ export class HitmeComponent implements OnInit, OnDestroy {
 
   // change this to use state and do from the app component
   @HostBinding('class.hm-hitme--gradient-overlay-active') public inputMode: boolean;
+  public songName = '';
 
   constructor(
     public chordService: ChordService,
-    private store: Store<fromHitMe.HitMeState>
+    private store: Store<fromHitMe.HitMeState>,
+    public saveSongDialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -103,6 +108,24 @@ export class HitmeComponent implements OnInit, OnDestroy {
   onReset(): void {
     this.store.dispatch(new hitMeActions.ToggleInputMode(true));
     this.store.dispatch(new hitMeActions.ResetChords());
+  }
+
+  openSaveSongDialog(): void {
+    const dialogRef = this.saveSongDialog.open(SaveSongDialogComponent, {
+      width: '300px',
+      data: { songName : this.songName}
+    });
+
+    //unsubscribe
+    dialogRef.afterClosed().subscribe(songNameToSave => {
+      this.songName = songNameToSave;
+
+      // if we get a name for the song we must be trying to save
+      // dispatch an action with the song with name and chords as the payload
+      // to store the current song to save in state as currentSong
+      // listen in effects and save the song to the database
+      // 
+    });
   }
 
   ngOnDestroy() {

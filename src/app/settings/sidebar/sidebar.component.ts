@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'hm-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
+
+  @Output() public closeSidebar = new EventEmitter();
 
   constructor() { }
 
-  ngOnInit() {
-    
+  public onMenuToggle():void {
+    this.closeSidebar.emit();
   }
 
 }

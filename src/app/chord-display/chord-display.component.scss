@@ -20,23 +20,20 @@
 .hm-chord-display__chords-list-item {
     padding: 0.2rem 1rem;
     color: #fff;
-    font-weight: 300;
     text-align: center;
     opacity: 1;
     transform: scale(1);
-    @media screen and (min-width: 50rem) {
-        font-weight: 600;
-    }
+    font-family: var(--font-serif);
 }
 
 .hm-chord-display__numeral {
     font-size: 1.2rem;
-    font-weight: normal;
     text-align: center;
 }
 
 .hm-chord-display__root-note {
-    font-size: 2rem;
+    font-size: 3rem;
+    font-weight: var(--font-weight-bold);
     @media screen and (min-width: 50rem) {
         font-size: 4.5rem;
     }
@@ -45,7 +42,7 @@
 .hm-chord-display__quality {
     font-size: 1.8rem;
     @media screen and (min-width: 50rem) {
-        font-size: 3rem;
+        font-size: 2rem;
     }
 }
 
@@ -53,7 +50,6 @@
     font-size: 0.9rem;
     font-style: italic;
     text-align: center;
-    font-family: serif;
 }
 
 .hm-chord-display--compact:host {
@@ -66,14 +62,14 @@
     .hm-chord-display__root-note {
         font-size: 1.5rem;
         @media screen and (min-width: 50rem) {
-            font-size: 2.5rem;
+            font-size: 2rem;
         }
     }
     
     .hm-chord-display__quality {
         font-size: 1rem;
         @media screen and (min-width: 50rem) {
-            font-size: 2rem;
+            font-size: 1.5rem;
         }
     }
 }
