@@ -2,6 +2,7 @@ import { Chord } from "src/app/models/chord.model";
 import * as fromRoot from '../../state/app.state';
 import * as hitMeActions from './hitme.actions';
 import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { Song } from "src/app/services/song.service";
 
 export interface State extends fromRoot.State {
     hitMe: HitMeState
@@ -12,14 +13,16 @@ export interface HitMeState {
     displayChords: Array<Chord>,
     userChords: Array<Chord>,
     hitMeChords: Array<Chord>,
-    inputMode: boolean
+    inputMode: boolean,
+    songs: Array<Song>
 }
 
 const initialState: HitMeState = {
     displayChords: [],
     userChords: [],
     hitMeChords: [],
-    inputMode: true
+    inputMode: true,
+    songs: []
 }
 
 const getHitMeFeatureState = createFeatureSelector<HitMeState>('hitme');
@@ -39,6 +42,10 @@ export const getHitmeChords = createSelector(
     state => state.hitMeChords
 )
 
+export const getHitMeSongs = createSelector(
+    getHitMeFeatureState,
+    state => state.songs
+);
 
 export function reducer(state = initialState, action): HitMeState {
     switch (action.type) {
@@ -64,6 +71,19 @@ export function reducer(state = initialState, action): HitMeState {
             return {
                 ...state,
                 hitMeChords: [...action.payload]
+            }
+
+        //combine these three
+        case hitMeActions.HitMeActionTypes.SaveSongSuccess:
+            return {
+                ...state,
+                songs: [...state.songs, action.payload]
+            }
+        
+        case hitMeActions.HitMeActionTypes.LoadSongsSuccess:
+            return {
+                ...state,
+                songs: [...state.songs, action.payload]
             }
 
         default:

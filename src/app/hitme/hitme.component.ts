@@ -9,9 +9,10 @@ import { ChordService } from './../services/chord.service';
 
 import * as fromHitMe from './state/hitme.reducer';
 import * as hitMeActions from './state/hitme.actions';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, take } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { SaveSongDialogComponent } from './save-song-dialog/save-song-dialog.component';
+import { Song, SongService } from '../services/song.service';
 
 // move animation triggers to it's own file
 @Component({
@@ -60,16 +61,21 @@ export class HitmeComponent implements OnInit, OnDestroy {
   private destoryed$: Subject<void> = new Subject();
 
   // change this to use state and do from the app component
-  @HostBinding('class.hm-hitme--gradient-overlay-active') public inputMode: boolean;
+  //@HostBinding('class.hm-hitme--gradient-overlay-active') 
+  public inputMode: boolean;
   public songName = '';
 
   constructor(
     public chordService: ChordService,
     private store: Store<fromHitMe.HitMeState>,
-    public saveSongDialog: MatDialog
+    public saveSongDialog: MatDialog,
   ) { }
 
   ngOnInit() {
+
+    this.store.dispatch(new hitMeActions.LoadSongs());
+    
+
     this.userChordsSubscription = this.store.pipe(
       select(fromHitMe.getUserChords),
       takeUntil(this.destoryed$)
@@ -116,12 +122,19 @@ export class HitmeComponent implements OnInit, OnDestroy {
       data: { songName : this.songName}
     });
 
-    //unsubscribe
-    dialogRef.afterClosed().subscribe(songNameToSave => {
+    dialogRef.afterClosed().pipe(
+      take(1),
+      takeUntil(this.destoryed$)
+    ).subscribe(songNameToSave => {
       this.songName = songNameToSave;
+      let songToSave: Song = {
+        name: this.songName,
+        chords: this.chordsToDisplay
+      }
+      this.store.dispatch(new hitMeActions.SaveSong(songToSave));
 
-      // if we get a name for the song we must be trying to save
-      // dispatch an action with the song with name and chords as the payload
+      
+      
       // to store the current song to save in state as currentSong
       // listen in effects and save the song to the database
       // 

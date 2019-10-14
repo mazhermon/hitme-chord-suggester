@@ -4,7 +4,7 @@ import { HitmeComponent } from './hitme/hitme.component';
 
 const routes: Routes = [
     {
-        path: 'songlist',
+        path: 'songs',
         loadChildren: () => import('./song-list/song-list.module').then(mod => mod.SongListModule)
     },
     {

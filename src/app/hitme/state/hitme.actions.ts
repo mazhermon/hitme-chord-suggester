@@ -1,5 +1,6 @@
 import { Chord, ChordSetter } from "src/app/models/chord.model";
 import { Action } from "@ngrx/store";
+import { Song } from "src/app/services/song.service";
 
 export enum HitMeActionTypes {
     ToggleInputMode = '[Hit me] Toggle input mode',
@@ -7,7 +8,11 @@ export enum HitMeActionTypes {
     CreateUserChordSuccess = '[Hit me] Create user chord success',
     ResetChords = '[Hit me] Reset chords',
     BorrowChords = '[Hit me] Borrow chords',
-    BorrowChordsSuccess = '[Hit me] Borrow chords success'
+    BorrowChordsSuccess = '[Hit me] Borrow chords success',
+    SaveSong = '[Hit me] Save song',
+    SaveSongSuccess = '[Hit me] Save song success',
+    LoadSongs = '[Hit me] Load songs',
+    LoadSongsSuccess = '[Hit me] Load songs success'
 }
 
 export class ToggleInputMode implements Action {
@@ -40,7 +45,33 @@ export class BorrowChordsSuccess {
     constructor(public payload: Array<Chord>) { }
 }
 
+export class SaveSong {
+    readonly type = HitMeActionTypes.SaveSong;
+    constructor(public payload: Song) {}
+}
+
+export class SaveSongSuccess {
+    readonly type = HitMeActionTypes.SaveSongSuccess;
+    constructor(public payload: Song) {}
+    // TODO listen in reducer and add this song to state as currentSong
+}
+
+export class LoadSongs {
+    readonly type = HitMeActionTypes.LoadSongs;
+}
+
+export class LoadSongsSuccess {
+    readonly type = HitMeActionTypes.LoadSongsSuccess;
+    constructor(public payload: Array<Song>) {}
+}
+
 export type HitMeActions = ToggleInputMode
     | CreateUserChord
     | CreateUserChordSuccess
-    | ResetChords;
+    | ResetChords
+    | BorrowChords
+    | BorrowChordsSuccess
+    | SaveSong
+    | SaveSongSuccess
+    | LoadSongs
+    | LoadSongsSuccess;

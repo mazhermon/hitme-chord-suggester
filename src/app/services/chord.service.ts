@@ -56,7 +56,7 @@ export class ChordService {
     return this._store.pipe(
       select(fromSettings.getGlobalKeyCenter),
       switchMap(globalKey => {
-        let key = globalKey; // get key from state somehow
+        let key = globalKey; // get key from state
         let newChords = [];
         for (let chord of chords) {
           let randomMode = this._getRandomMode();
@@ -64,6 +64,8 @@ export class ChordService {
             take(1)
           ).subscribe(chord => (newChords.push(chord)));
         }
+
+        console.log('hit me chords suggest');
 
         return of(newChords);
       })

@@ -10,6 +10,10 @@ hm-sidebar:host {
 .sidebar__close-button {
     background: 0;
     border: 0;
+    padding: 0.5rem;
+    &:focus { // replace this properly later
+        outline: 2px dotted rgba(255,255,255,0.5);
+    }
 }
 
 .sidebar__toggle-button-svg {
