@@ -73,7 +73,7 @@ export class HitmeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.store.dispatch(new hitMeActions.LoadSongs());
+    
     
 
     this.userChordsSubscription = this.store.pipe(

@@ -73,7 +73,6 @@ export function reducer(state = initialState, action): HitMeState {
                 hitMeChords: [...action.payload]
             }
 
-        //combine these three
         case hitMeActions.HitMeActionTypes.SaveSongSuccess:
             return {
                 ...state,
@@ -83,7 +82,7 @@ export function reducer(state = initialState, action): HitMeState {
         case hitMeActions.HitMeActionTypes.LoadSongsSuccess:
             return {
                 ...state,
-                songs: [...state.songs, action.payload]
+                songs: [...state.songs, ...action.payload]
             }
 
         default:

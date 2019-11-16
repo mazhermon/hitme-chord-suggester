@@ -50,31 +50,23 @@ export class SongService {
   }
 
   saveSong(song): Observable<Song> {
-    // save song to mongo DB TODO ===
-
     return this._store.pipe(
       select(fromHitMe.getHitMeSongs),
       take(1),
       switchMap(songs => {
-        console.log('songs is ', songs);
-        // already doing this with save song success this._store.dispatch(new hitMeActions.AddSong(song));
         let songsToSave = [...songs, song];
+        // Save to local storage
         localStorage.setItem('hmlocalsongs', JSON.stringify(songsToSave));
-
+        // TODO save song to mongo or Firebase DB TODO ===
         return of(song);
       })
     )
   }
 
-  loadSongs(): Array<Song> {
-    // move this to loadSongsFromLocalStorage Effect
+  loadSongs(): Observable<Array<Song>> {
     //get songs from local storage if there?
     const localStorageSongs = JSON.parse(localStorage.getItem('hmlocalsongs'));
-    let songs = localStorageSongs || [];
-    console.log('songs from lcoal storage ', songs);
-    //this._store.dispatch(new hitMeActions.LoadSongsSuccess(songs));
-    //return of(songs);
-    return [];
-
+    let songs = localStorageSongs && [...localStorageSongs] || [{}];
+    return of(songs);
   }
 }

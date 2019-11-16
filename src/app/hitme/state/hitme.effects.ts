@@ -46,10 +46,12 @@ export class HitmeEffects {
     
         //working on loading songs from local storage
         // need to map them from object to array of songs I think
-    // @Effect()
-    // public loadSongs$ = this.actions$.pipe(
-    //     ofType(hitMeActions.HitMeActionTypes.LoadSongs),
-    //     switchMap( () => this.songService.loadSongs().pipe(
-    //         map(songs => (new hitMeActions.LoadSongsSuccess(songs)))
-    //     )));
+    @Effect()
+    public loadSongs$ = this.actions$.pipe(
+        ofType(hitMeActions.HitMeActionTypes.LoadSongs),
+        switchMap( () => this.songService.loadSongs().pipe(
+            map(localSongs => {
+                return new hitMeActions.LoadSongsSuccess(localSongs);
+            })
+        )));
 }

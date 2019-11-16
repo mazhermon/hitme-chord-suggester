@@ -65,8 +65,6 @@ export class ChordService {
           ).subscribe(chord => (newChords.push(chord)));
         }
 
-        console.log('hit me chords suggest');
-
         return of(newChords);
       })
     )

@@ -12,7 +12,8 @@ export enum HitMeActionTypes {
     SaveSong = '[Hit me] Save song',
     SaveSongSuccess = '[Hit me] Save song success',
     LoadSongs = '[Hit me] Load songs',
-    LoadSongsSuccess = '[Hit me] Load songs success'
+    LoadSongsSuccess = '[Hit me] Load songs success',
+    HitMeNoOp = '[Hit me] NO OP'
 }
 
 export class ToggleInputMode implements Action {
@@ -65,6 +66,10 @@ export class LoadSongsSuccess {
     constructor(public payload: Array<Song>) {}
 }
 
+export class HitMeNoOp {
+    readonly type = HitMeActionTypes.HitMeNoOp;
+}
+
 export type HitMeActions = ToggleInputMode
     | CreateUserChord
     | CreateUserChordSuccess
@@ -74,4 +79,5 @@ export type HitMeActions = ToggleInputMode
     | SaveSong
     | SaveSongSuccess
     | LoadSongs
-    | LoadSongsSuccess;
+    | LoadSongsSuccess
+    | HitMeNoOp;
