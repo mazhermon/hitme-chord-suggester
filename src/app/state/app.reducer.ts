@@ -1,14 +1,15 @@
-// import { createFeatureSelector } from "@ngrx/store";
+import * as fromAppState from './app.state';
+import * as appActions from './app.actions';
 
-// export interface AppState {
-//     // currently only added via feature state
-// }
-// export const INITIAL_STATE: AppState = {
+export function reducer(state = fromAppState.initialShellState, action): fromAppState.ShellState {
+    switch (action.type) {
+        case appActions.AppActionTypes.ToggleSideBar:
+            return {
+                ...state,
+                sideBarIsOpen: !state.sideBarIsOpen
+            }
 
-// }
-
-// //const getAppState = createFeatureSelector
-
-// export function reducer(state = INITIAL_STATE, action): AppState {
-
-// } 
+        default:
+            return state
+    }
+}
