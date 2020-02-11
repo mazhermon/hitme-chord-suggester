@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import * as appActions from '../../state/app.actions';
 import { Store } from '@ngrx/store';
-import * as fromAppState from 'src/app/state/app.state';
+import * as fromAppState from 'src/app/state/app.reducer';
 
 @Component({
   selector: 'hm-sidebar',

@@ -12,7 +12,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SettingsModule } from './settings/settings.module';
 import { AppRoutingModule } from './app-routing.module';
-import * as fromAppState from './state/app.state';
+import * as fromAppState from './state/app.reducer';
 
 @NgModule({
   declarations: [

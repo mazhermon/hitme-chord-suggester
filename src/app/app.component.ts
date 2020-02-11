@@ -1,10 +1,10 @@
 import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { State } from './state/app.state';
+import { State } from './state/app.reducer';
 import * as hitMeActions from './hitme/state/hitme.actions';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, take } from 'rxjs/operators';
 import * as appActions from './state/app.actions'
-import * as fromAppState from './state/app.state';
+import * as fromAppState from './state/app.reducer';
 import { Router, NavigationEnd, RouterEvent } from '@angular/router';
 import { Subject } from 'rxjs';
 
@@ -17,9 +17,9 @@ import { Subject } from 'rxjs';
 export class AppComponent implements OnInit, OnDestroy {
 
 	private destroyed$ = new Subject();
-	
+	private _firstLoad = true;
 	public sidebarOpened: boolean;
-
+	
 	constructor(
 		private store: Store<State>,
 		private router: Router
@@ -35,9 +35,12 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.router.events.pipe(
 			takeUntil(this.destroyed$)
 		).subscribe( (e:RouterEvent) => {
-			const isHome = e.url == '/';
-			if(e instanceof NavigationEnd && !isHome) {
+			if(e instanceof NavigationEnd && !this._firstLoad) {
 				this.onAnyRouteChange();
+			}
+
+			if(e instanceof NavigationEnd && this._firstLoad) {
+				this._firstLoad = false;
 			}
 		})
 	}

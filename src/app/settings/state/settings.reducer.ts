@@ -1,4 +1,4 @@
-import * as fromRoot from '../../state/app.state';
+import * as fromRoot from '../../state/app.reducer';
 import * as settingsActions from './setting.actions';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { Key } from 'src/app/models/key.model';
