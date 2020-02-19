@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -23,15 +23,15 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  // emailFormControl = new FormControl('', [
+  //   Validators.required,
+  //   Validators.email,
+  // ]);
 
-  matcher = new MyErrorStateMatcher();
+  // matcher = new MyErrorStateMatcher();
 
-  onSubmit(form: NgForm):void {
-    console.log(form);
-  }
+  // onSubmit(form: NgForm):void {
+  //   console.log(form);
+  // }
 
 }

@@ -9,7 +9,8 @@ const routes: Routes = [
         loadChildren: () => import('./song-list/song-list.module').then(mod => mod.SongListModule)
     },
     {
-        path: 'register', component: RegisterComponent
+        path: 'auth',
+        loadChildren: () => import('./auth/auth.module').then(mod => mod.AuthModule)
     },
     {
         path: '', component: HitmeComponent
