@@ -12,6 +12,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SettingsModule } from './settings/settings.module';
 import { AppRoutingModule } from './app-routing.module';
+import * as fromAppState from './state/app.reducer';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { AppRoutingModule } from './app-routing.module';
     HitmeModule,
     MatSidenavModule,
     SettingsModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(fromAppState.reducers),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 10

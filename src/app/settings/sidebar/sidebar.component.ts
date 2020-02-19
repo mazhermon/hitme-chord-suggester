@@ -1,4 +1,7 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import * as appActions from '../../state/app.actions';
+import { Store } from '@ngrx/store';
+import * as fromAppState from 'src/app/state/app.reducer';
 
 @Component({
   selector: 'hm-sidebar',
@@ -7,12 +10,11 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 })
 export class SidebarComponent {
 
-  @Output() public closeSidebar = new EventEmitter();
+  constructor(
+    public store: Store<fromAppState.State>
+  ) { }
 
-  constructor() { }
-
-  public onMenuToggle():void {
-    this.closeSidebar.emit();
+  public onMenuToggle(): void {
+    this.store.dispatch(new appActions.ToggleSideBar())
   }
-
 }

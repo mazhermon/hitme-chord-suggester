@@ -1,5 +1,5 @@
 import { Chord } from "src/app/models/chord.model";
-import * as fromRoot from '../../state/app.state';
+import * as fromRoot from '../../state/app.reducer';
 import * as hitMeActions from './hitme.actions';
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { Song } from "src/app/services/song.service";
