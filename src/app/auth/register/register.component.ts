@@ -1,37 +1,47 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-
+import { Component, OnInit } from "@angular/core";
+import {
+  FormControl,
+  FormGroupDirective,
+  NgForm,
+  Validators
+} from "@angular/forms";
+import { ErrorStateMatcher } from "@angular/material/core";
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
     const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+    return !!(
+      control &&
+      control.invalid &&
+      (control.dirty || control.touched || isSubmitted)
+    );
   }
 }
 
 @Component({
-  selector: 'hm-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: "hm-register",
+  templateUrl: "./register.component.html",
+  styleUrls: ["./register.component.scss"]
 })
 export class RegisterComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  emailFormControl = new FormControl("", [
+    Validators.required,
+    Validators.email
+  ]);
+
+  passwordFormControl = new FormControl("", [Validators.required]);
+
+  matcher = new MyErrorStateMatcher();
+
+  onSubmit(form: NgForm): void {
+    console.log(form);
   }
-
-  // emailFormControl = new FormControl('', [
-  //   Validators.required,
-  //   Validators.email,
-  // ]);
-
-  // matcher = new MyErrorStateMatcher();
-
-  // onSubmit(form: NgForm):void {
-  //   console.log(form);
-  // }
-
 }

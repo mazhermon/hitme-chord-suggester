@@ -1,23 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HitmeModule } from './hitme/hitme.module';
+import { AppComponent } from "./app.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HitmeModule } from "./hitme/hitme.module";
 
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SettingsModule } from './settings/settings.module';
-import { AppRoutingModule } from './app-routing.module';
-import * as fromAppState from './state/app.reducer';
+import { StoreModule } from "@ngrx/store";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { EffectsModule } from "@ngrx/effects";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { SettingsModule } from "./settings/settings.module";
+import { AppRoutingModule } from "./app-routing.module";
+import * as fromAppState from "./state/app.reducer";
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -36,4 +34,4 @@ import * as fromAppState from './state/app.reducer';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
