@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "hitme-chord-suggester": {
+      "hosting": {
+        "hitme": [
+          "hitme-chord-suggester"
+        ]
+      }
+    }
+  }
+}

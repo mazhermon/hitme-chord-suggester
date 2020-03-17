@@ -1,63 +1,80 @@
-import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { State } from './state/app.reducer';
-import * as hitMeActions from './hitme/state/hitme.actions';
-import { takeUntil, take } from 'rxjs/operators';
-import * as appActions from './state/app.actions'
-import * as fromAppState from './state/app.reducer';
-import { Router, NavigationEnd, RouterEvent } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Component, ViewEncapsulation, OnInit, OnDestroy } from "@angular/core";
+import { Store, select } from "@ngrx/store";
+import { State } from "./state/app.reducer";
+import * as hitMeActions from "./hitme/state/hitme.actions";
+import { takeUntil, take } from "rxjs/operators";
+import * as appActions from "./state/app.actions";
+import * as fromAppState from "./state/app.reducer";
+import { Router, NavigationEnd, RouterEvent } from "@angular/router";
+import { Subject, Observable, Subscription } from "rxjs";
+import { AuthService } from "./auth/auth.service";
 
 @Component({
-	selector: 'app-root',
-	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss'],
-	encapsulation: ViewEncapsulation.None
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit, OnDestroy {
+  private destroyed$ = new Subject();
+  private _firstLoad = true;
+  public sidebarOpened: boolean;
 
-	private destroyed$ = new Subject();
-	private _firstLoad = true;
-	public sidebarOpened: boolean;
-	
-	constructor(
-		private store: Store<State>,
-		private router: Router
-	) { }
+  public isAuth = false;
+  public currentUser: string;
+  private _isAuthSub$: Subscription;
 
-	ngOnInit() {
-		this.store.dispatch(new hitMeActions.LoadSongs());
-		this.store.pipe(
-			takeUntil(this.destroyed$),
-			select(fromAppState.getSideBarIsOpen)
-		).subscribe(sidebarOpened => this.sidebarOpened = sidebarOpened);
+  constructor(
+    private store: Store<State>,
+    private router: Router,
+    private _authService: AuthService
+  ) {}
 
-		this.router.events.pipe(
-			takeUntil(this.destroyed$)
-		).subscribe( (e:RouterEvent) => {
-			if(e instanceof NavigationEnd && !this._firstLoad) {
-				this.onAnyRouteChange();
-			}
+  ngOnInit() {
+    this._authService.initAuthListener();
 
-			if(e instanceof NavigationEnd && this._firstLoad) {
-				this._firstLoad = false;
-			}
-		})
-	}
+    this._isAuthSub$ = this._authService.authChange$.subscribe(isAuth => {
+      this.isAuth = isAuth;
+      this.currentUser = this._authService.getCurrentUserEmail();
+    }); // refactor to use pipe and take until etc.
 
-	private _toggleSideBar() {
-		this.store.dispatch(new appActions.ToggleSideBar());
-	}
+    // now doing this from auth service
+    //this.store.dispatch(new hitMeActions.LoadSongs());
 
-	onMenuToggle() {
-		this._toggleSideBar();
-	}
+    this.store
+      .pipe(takeUntil(this.destroyed$), select(fromAppState.getSideBarIsOpen))
+      .subscribe(sidebarOpened => (this.sidebarOpened = sidebarOpened));
 
-	onAnyRouteChange() {
-		this._toggleSideBar();
-	}
+    this.router.events
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((e: RouterEvent) => {
+        if (e instanceof NavigationEnd && !this._firstLoad) {
+          this.onAnyRouteChange();
+        }
 
-	ngOnDestroy() {
-		this.destroyed$.next()
-	}
+        if (e instanceof NavigationEnd && this._firstLoad) {
+          this._firstLoad = false;
+        }
+      });
+  }
+
+  private _toggleSideBar() {
+    this.store.dispatch(new appActions.ToggleSideBar());
+  }
+
+  onMenuToggle() {
+    this._toggleSideBar();
+  }
+
+  onAnyRouteChange() {
+    this._toggleSideBar();
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next();
+  }
+
+  onLogout(): void {
+    this._authService.logout();
+  }
 }

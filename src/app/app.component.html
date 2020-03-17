@@ -17,12 +17,17 @@
       </button>
 
       <nav class="app-root__auth-links">
+        <h1>You are logged {{ isAuth ? "in" : "out" }} as {{currentUser}}</h1>
+        <h2>app component isAuth = {{ isAuth }}</h2>
         <ul>
           <li>
             <a routerLink="/auth/register">Register</a>
           </li>
-          <li>
+          <li *ngIf="!isAuth">
             <a routerLink="/auth/login">Login</a>
+          </li>
+          <li *ngIf="isAuth">
+            <button (click)="onLogout()">Log out</button>
           </li>
         </ul>
       </nav>

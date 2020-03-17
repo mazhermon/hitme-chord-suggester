@@ -5,22 +5,23 @@ import {
   NgForm,
   Validators
 } from "@angular/forms";
-import { ErrorStateMatcher } from "@angular/material/core";
+import { AuthService } from "../auth.service";
+// import { ErrorStateMatcher } from "@angular/material/core";
 
 /** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
+// export class MyErrorStateMatcher implements ErrorStateMatcher {
+//   isErrorState(
+//     control: FormControl | null,
+//     form: FormGroupDirective | NgForm | null
+//   ): boolean {
+//     const isSubmitted = form && form.submitted;
+//     return !!(
+//       control &&
+//       control.invalid &&
+//       (control.dirty || control.touched || isSubmitted)
+//     );
+//   }
+// }
 
 @Component({
   selector: "hm-register",
@@ -28,20 +29,13 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ["./register.component.scss"]
 })
 export class RegisterComponent implements OnInit {
-  constructor() {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit() {}
 
-  emailFormControl = new FormControl("", [
-    Validators.required,
-    Validators.email
-  ]);
-
-  passwordFormControl = new FormControl("", [Validators.required]);
-
-  matcher = new MyErrorStateMatcher();
+  //matcher = new MyErrorStateMatcher();
 
   onSubmit(form: NgForm): void {
-    console.log(form);
+    this.authService.registerUser(form.value);
   }
 }

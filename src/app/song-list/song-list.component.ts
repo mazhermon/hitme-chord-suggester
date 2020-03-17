@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import * as fromHitMe from '../hitme/state/hitme.reducer'
 import { take } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class SongListComponent implements OnInit {
 
   constructor(
     //private songService: SongService,
-    private _store: Store<fromHitMe.State>
+    private _store: Store<fromHitMe.State>,
+    private _authService: AuthService
   ) { }
 
   ngOnInit() {

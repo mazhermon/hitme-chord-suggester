@@ -8,10 +8,8 @@
     <input
       ngModel
       #emailInput="ngModel"
-      name="emailFormControl"
+      name="email"
       matInput
-      email
-      required
       type="email"
       placeholder="Email"
     />
@@ -31,17 +29,14 @@
     "
   >
     <input
-      [errorStateMatcher]="matcher"
       ngModel
-      name="passwordFormControl"
+      #pwInput="ngModel"
+      name="password"
       matInput
       type="password"
-      required
-      minlength="6"
-      #pwInput="ngModel"
       placeholder="Password"
     />
-    <mat-hint *ngIf="pwInput.value.length < 6" align="end"
+    <mat-hint *ngIf="pwInput?.value?.length < 6" align="end"
       >{{ pwInput.value?.length }} / 6
     </mat-hint>
     <mat-error
