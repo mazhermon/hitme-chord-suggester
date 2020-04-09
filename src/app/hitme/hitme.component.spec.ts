@@ -1,16 +1,34 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { HitmeComponent } from './hitme.component';
+import { HitmeComponent } from "./hitme.component";
+import { of } from "rxjs/internal/observable/of";
+import { provideMockStore } from "@ngrx/store/testing";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 
-describe('HitmeComponent', () => {
+describe("HitmeComponent", () => {
   let component: HitmeComponent;
   let fixture: ComponentFixture<HitmeComponent>;
 
   beforeEach(async(() => {
+    const initialState = {
+      displayChords: [],
+      userChords: [],
+      hitMeChords: [],
+      inputMode: true,
+      songs: []
+    };
+
     TestBed.configureTestingModule({
-      declarations: [ HitmeComponent ]
-    })
-    .compileComponents();
+      imports: [NoopAnimationsModule],
+      declarations: [HitmeComponent],
+      providers: [
+        provideMockStore({ initialState }),
+        { provide: MatDialog, useValue: {} }
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +37,7 @@ describe('HitmeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

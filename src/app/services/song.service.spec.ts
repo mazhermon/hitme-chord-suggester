@@ -1,11 +1,15 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
+import { provideMockStore } from "@ngrx/store/testing";
+import { SongService } from "./song.service";
 
-import { SongService } from './song.service';
+describe("SongService", () => {
+  const initialState = {};
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      providers: [provideMockStore({initialState})]
+    }));
 
-describe('SongService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
-
-  it('should be created', () => {
+  it("should be created", () => {
     const service: SongService = TestBed.get(SongService);
     expect(service).toBeTruthy();
   });

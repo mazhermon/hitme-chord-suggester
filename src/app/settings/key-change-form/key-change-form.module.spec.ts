@@ -1,13 +1,13 @@
-import { KeyChangeFormModule } from './key-change-form.module';
+import { KeyChangeFormModule } from "./key-change-form.module";
 
-describe('KeyChangeFormModule', () => {
+describe("KeyChangeFormModule", () => {
   let keyChangeFormModule: KeyChangeFormModule;
 
   beforeEach(() => {
     keyChangeFormModule = new KeyChangeFormModule();
   });
 
-  it('should create an instance', () => {
+  it("should create an instance", () => {
     expect(keyChangeFormModule).toBeTruthy();
   });
 });

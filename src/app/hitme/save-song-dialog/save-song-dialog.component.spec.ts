@@ -1,16 +1,32 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SaveSongDialogComponent } from './save-song-dialog.component';
+import { SaveSongDialogComponent } from "./save-song-dialog.component";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { MatInput } from "@angular/material/input";
+import {
+  MatDialogModule,
+  MatDialogRef,
+  MAT_DIALOG_DATA
+} from "@angular/material/dialog";
 
-describe('SaveSongDialogComponent', () => {
+describe("SaveSongDialogComponent", () => {
   let component: SaveSongDialogComponent;
   let fixture: ComponentFixture<SaveSongDialogComponent>;
 
   beforeEach(async(() => {
+    const dialogData = {
+      songName: "song title"
+    };
+
     TestBed.configureTestingModule({
-      declarations: [ SaveSongDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [SaveSongDialogComponent, MatInput],
+      imports: [MatDialogModule],
+      providers: [
+        { provide: MatDialogRef, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: dialogData }
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +35,7 @@ describe('SaveSongDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

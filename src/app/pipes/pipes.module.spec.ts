@@ -1,13 +1,13 @@
-import { PipesModule } from './pipes.module';
+import { PipesModule } from "./pipes.module";
 
-describe('PipesModule', () => {
+describe("PipesModule", () => {
   let pipesModule: PipesModule;
 
   beforeEach(() => {
     pipesModule = new PipesModule();
   });
 
-  it('should create an instance', () => {
+  it("should create an instance", () => {
     expect(pipesModule).toBeTruthy();
   });
 });

@@ -1,16 +1,28 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SongListComponent } from './song-list.component';
+import { SongListComponent } from "./song-list.component";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { provideMockStore } from "@ngrx/store/testing";
 
-describe('SongListComponent', () => {
+describe("SongListComponent", () => {
   let component: SongListComponent;
   let fixture: ComponentFixture<SongListComponent>;
 
   beforeEach(async(() => {
+    const initialState = {
+      hitme: {
+        displayChords: [],
+        userChords: [],
+        hitMeChords: [],
+        inputMode: true,
+        songs: []
+      }
+    };
     TestBed.configureTestingModule({
-      declarations: [ SongListComponent ]
-    })
-    .compileComponents();
+      declarations: [SongListComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [provideMockStore({ initialState })]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +31,7 @@ describe('SongListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
