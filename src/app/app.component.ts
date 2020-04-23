@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { State } from './state/app.reducer';
 import * as hitMeActions from './hitme/state/hitme.actions';
-import { takeUntil, take } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import * as appActions from './state/app.actions'
 import * as fromAppState from './state/app.reducer';
 import { Router, NavigationEnd, RouterEvent } from '@angular/router';

@@ -8,19 +8,20 @@ hm-sidebar:host {
 }
 
 .sidebar__close-button {
+    color: var(--white);
     background: 0;
     border: 0;
     padding: 0.5rem;
-    &:focus { // replace this properly later
-        outline: 2px dotted rgba(255,255,255,0.5);
-    }
+    transform: translateX(1.2rem)
 }
 
 .sidebar__toggle-button-svg {
+    fill: var(--white);
     width: 12px;
     height: 12px;
     position: relative;
     top: 3px;
+    margin-left: 6px;
 }
 
 .sidebar__nav-list {
@@ -29,12 +30,23 @@ hm-sidebar:host {
     margin: 0;
 
     > li {
-        border-bottom: 1px solid gray; // choose color;
+        border-bottom: 1px solid var(--blueDark);
 
         a {
+            color: var(--white);
             display: block;
             padding: 1rem;
             text-decoration: none;
+
+            &::after {
+                left: 0;
+                top: 0;
+                bottom: 0;
+                border-radius: 0;
+                transform: translateY(0);
+                width: 6px;
+                height: auto;
+            }
         }
     }
 }

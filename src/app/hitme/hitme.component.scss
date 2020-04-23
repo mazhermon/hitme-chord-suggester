@@ -64,11 +64,11 @@ hm-chord-display {
     position: fixed;
     contain: layout style;
     bottom: 0;
-    left: 0; right: 0;
+    left: 3vw; right: 3vw;
     background: rgba(255,255,255,0.1);
     padding: 1rem;
     box-shadow: var(--shadow-layer-1);
-    background: var(--black);
+    background: var(--green);
     border-top-left-radius: 55px;
 }
 

@@ -22,24 +22,25 @@
     --font-weight-bold: 700;
 
     --white: #f9f9f9;
-    --mint: #dee5db;
-    --purpleLight: #dfdbe5;
     --black: #313331;
+
+    --blueDark: #151D5A;
+    --salmon: #FEA49F;
+    --green: cadetblue;
+    --greenLight: #89c3c5;
+    
+    //meh?
     --gray-light: #c9cac9;
     --gray-extra-light: #fafafa;
-
     --blue1: #6CABFF;
     --blue2: rgb(45, 98, 168);
-    --turq: #7AE8E0;
-    --turq-fallback: rgb(79, 214, 205);
-
-    --pink: #FF83D2;
-    --green: #99FFB3;
+    
+    
 
     --gradient1: linear-gradient(
         -45deg,
-        var(--blue1),
-        var(--pink)
+        var(--blueDark),
+        var(--black)
     );
 
     --gradient2: linear-gradient(
@@ -60,6 +61,33 @@
 body {
     font-family: var(--font-main);
     font-weight: var(--font-weight);
+
+    border: 3vw solid var(--white);
+    border-bottom: 0;
+}
+
+button,
+a {
+    color: var(--white);
+    text-decoration: none;
+
+    &:focus,
+    &:hover {
+        outline: none;
+        position: relative;
+        text-decoration: underline;
+        &::after {
+            content: '';
+            background: var(--salmon);
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-6px);
+            position: absolute;
+            left: -0.8rem;
+        }
+    }
 }
 
 // a,
@@ -88,12 +116,12 @@ footer {
 
 .app-root__container {
     height: 100%;
-    background: var(--gradient1);
+    background: var(--green);
 }
 
 .app-root__sidebar {
     width: 300px;
-    background: var(--gray-extra-light);
+    background: var(--green);
     border-top-right-radius: var(--border-radius-med);
 
     @media screen and (max-width: 350px) {
@@ -102,7 +130,7 @@ footer {
 }
 
 .app-root__content {
-    padding: 1rem;
+    padding: 3rem;
     position: relative;
 }
 
@@ -141,3 +169,4 @@ footer {
     width: 1rem;
     margin-left: 0.8rem;
 }
+

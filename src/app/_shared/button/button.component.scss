@@ -1,6 +1,7 @@
 :host {
-    --button-gradient: var(--gradient1);
-    background-image: var(--button-gradient);
+    // --button-gradient: var(--gradient1);
+    // background-image: var(--button-gradient);
+    background-color: var(--white);
 
     &::before,
     &::after {
@@ -13,7 +14,7 @@
 
     &::before {
         --scoped-spacer: 2px;
-        background-color: var(--black);
+        background-color: var(--green);
     }
 
     &::after {
@@ -28,7 +29,7 @@
 
 // Button modifiers
 .hm-button--primary:host {
-    --button-gradient: var(--gradient2);
+    --button-gradient: var(--green);
     &::before {
         --scoped-spacer: 4px;
     }
@@ -79,7 +80,7 @@
     padding: 0.2rem;
     line-height: 34px;
     min-width: 34px;
-    background-color: var(--black);
+    background-color: var(--green);
     margin: 0.2rem;
     display: block; 
     border-radius: 20px;
