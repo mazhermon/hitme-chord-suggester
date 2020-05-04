@@ -85,6 +85,12 @@ export function reducer(state = initialState, action): HitMeState {
         songs: [...state.songs, ...action.payload]
       };
 
+    case hitMeActions.HitMeActionTypes.SetUserChords:
+      return {
+        ...state,
+        userChords: [action.payload]
+      };
+
     default:
       return state;
   }
