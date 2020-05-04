@@ -7,7 +7,7 @@ import { Chord } from "./../models/chord.model";
 
 import * as fromHitMe from "./state/hitme.reducer";
 import * as hitMeActions from "./state/hitme.actions";
-import { takeUntil, take } from "rxjs/operators";
+import { takeUntil, take, filter } from "rxjs/operators";
 import { MatDialog } from "@angular/material/dialog";
 import { SaveSongDialogComponent } from "./save-song-dialog/save-song-dialog.component";
 import { Song, SongService } from "../services/song.service";
@@ -116,7 +116,8 @@ export class HitmeComponent implements OnInit, OnDestroy {
       .afterClosed()
       .pipe(
         take(1),
-        takeUntil(this.destoryed$)
+        takeUntil(this.destoryed$),
+        filter(songName => songName != "")
       )
       .subscribe(songNameToSave => {
         this.songName = songNameToSave;
@@ -125,10 +126,6 @@ export class HitmeComponent implements OnInit, OnDestroy {
           chords: this.chordsToDisplay
         };
         this.store.dispatch(new hitMeActions.SaveSong(songToSave));
-
-        // to store the current song to save in state as currentSong
-        // listen in effects and save the song to the database
-        //
       });
   }
 

@@ -3,17 +3,17 @@
 }
 
 .song-list__songs {
-    list-style: none;
-    margin: 0;
+    max-width: 400px;
     padding: 0;
-    
+    margin: 0;
+    list-style: none;
+
     > li {
-        border-bottom: 1px solid var(--black);
+        border-bottom: 1px solid var(--white);
+
         > a {
             display: block;
             padding: 1rem;
         }
     }
-
-    
 }

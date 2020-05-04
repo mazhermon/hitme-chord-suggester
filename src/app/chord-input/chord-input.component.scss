@@ -46,7 +46,7 @@
     width: 100%;
     border: 0;
     border-radius: 34px;
-    background-image: var(--green);
+    background-image: var(--primary);
     outline: none; //a11y replaced
 
     &::before,
@@ -89,7 +89,7 @@
     padding: 0.2rem;
     //line-height: 34px;
     min-width: 34px;
-    background-color: var(--green);
+    background-color: var(--primary);
     margin: 0.2rem;
     display: block; 
     border-radius: 20px;

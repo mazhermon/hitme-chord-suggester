@@ -1,0 +1,9 @@
+::ng-deep {
+    .mat-dialog-container.mat-dialog-container.mat-dialog-container {
+        border: 10px solid var(--white);
+        background: var(--secondary);
+        * {
+            color: white !important;
+        }
+    }
+}

@@ -1,6 +1,10 @@
 <mat-sidenav-container class="app-root__container">
 
-    <mat-sidenav class="app-root__sidebar" mode="over" [(opened)]="sidebarOpened">
+    <mat-sidenav 
+        class="app-root__sidebar" 
+        mode="over"
+        [(opened)]="sidebarOpened"
+        (closedStart)="onBackdropCloseSidebar()">
         <hm-sidebar (closeSidebar)="onMenuToggle()"></hm-sidebar>
     </mat-sidenav>
 

@@ -1,0 +1,46 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$blueDark: #151d5a;
+$salmon: #fea49f;
+$green: cadetblue;
+$greenDark: #5b8588;
+$greenLight: #82b8bb;
+
+$dark: #41585a;
+
+// TODO clean this up to simplify
+$brand-hitmegreen: (
+    50: #82b8bb,
+    100: #82b8bb,
+    200: cadetblue,
+    300: cadetblue,
+    400: #41585a,
+    500: white,
+    600: #41585a,
+    700: #41585a,
+    800: cadetblue,
+    A200: cadetblue,
+    A400: cadetblue,
+    A700: cadetblue,
+    contrast: (
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A700: white
+    )
+);
+$hitme-app-primary: mat-palette($brand-hitmegreen);
+$hitme-app-accent: mat-palette($brand-hitmegreen, A200, A100, A400);
+$hitme-app-warn: mat-palette($brand-hitmegreen);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$hitme-app-theme: mat-light-theme(
+    $hitme-app-primary,
+    $hitme-app-accent,
+    $hitme-app-warn
+);
+
+@include angular-material-theme($hitme-app-theme);

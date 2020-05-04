@@ -1,0 +1,43 @@
+.hm-song__header {
+    display: flex;
+    justify-content: center;
+    margin: 0 8px;
+    text-align: center;
+    text-transform: capitalize;
+
+    &::before,
+    &::after {
+        height: 2px;
+        flex: 1;
+        flex: 0 0 35px;
+        border-top: 1px solid var(--white);
+        background-color: var(--white);
+        content: '';
+        transform: translateY(11px);
+    }
+
+    @media screen and (min-width: 650px) {
+        transform: translateY(-60px);
+        margin: 0 10%;
+
+        &::before,
+        &::after {
+            flex: 0 0 100px;
+            transform: translateY(14px);
+        }
+    }
+}
+
+.hm-song__title {
+    position: relative;
+    width: auto;
+    margin: 0 14px 40px;
+    color: var(--white);
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+
+    @media screen and (min-width: 700px) {
+        margin: 0 20px 50px;
+        font-size: 1.4rem;
+    }
+}

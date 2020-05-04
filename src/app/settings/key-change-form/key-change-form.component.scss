@@ -1,11 +1,15 @@
+.hm-key-change-form__current-key-form {
+    border-top: 1px solid white;
+}
 
 .hm-key-change-form__current-key-display {
     //font-weight: bold;
-    margin: 2rem 0 1rem 0;
-    box-shadow: var(--shadow-layer-2);
+    margin-top: 0.2rem;
+    font-family: var(--font-serif);
 }
 
 .hm-key-change-form__current-key-centre {
+    font-size: 1.2rem;
     font-weight: var(--font-weight-bold);
 }
 
@@ -15,10 +19,10 @@
     border-bottom: 1px solid var(--pink);
 
     > span {
-        font-size: 0.8rem;
-        color: var(--pink);
-        margin-right:0.5rem;
         align-self: center;
+        margin-right: 0.5rem;
+        color: var(--pink);
+        font-size: 0.8rem;
     }
 
     //overrides
@@ -27,38 +31,99 @@
     }
 }
 
-
-
 .hm-key-change-form__input-group-item {
     flex: 1 1 auto;
 
     &:first-of-type {
         width: 15%;
     }
+
+    ::ng-deep {
+        .mat-form-field.mat-focused .mat-form-field-label {
+            color: var(--dark);
+        }
+    }
 }
 
 .hm-key-change-form__key-name-select {
     width: 100%;
+    color: var(--white);
+
+    ::ng-deep {
+        label {
+            color: var(--white) !important;
+        }
+
+        .mat-form-field-infix::after {
+            color: var(--white);
+        }
+    }
 }
 
 .hm-key-change-form__maj-min-toggle {
     display: flex;
     margin-left: 0.5rem;
+    border-color: var(--white);
 
     mat-button-toggle {
         flex: 1 0 0%;
         padding: 0.2rem;
+        background: none;
+        border-color: var(--white);
+        color: var(--white);
         font-size: 0.8rem;
+
+        &:hover {
+            background-color: var(--highlight);
+        }
     }
+
     //overrides
     ::ng-deep .mat-button-toggle-label-content {
-        line-height: 36px;
         padding: 0;
-    } 
+        line-height: 36px;
+    }
 }
 
-.mat-button-toggle-checked {
-    background-color: var(--pink);
-    color: #fff;
+.mat-button-toggle:first-child {
+    position: relative;
+
+    &::after {
+        position: absolute;
+        z-index: 1;
+        right: -1px;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        background-color: var(--white);
+        content: '';
+        transform: translateX(100%);
+        transition: transform 0.15s ease-in-out;
+    }
 }
 
+.mat-button-toggle-checked:first-child {
+    &::after {
+        transform: translateX(0);
+    }
+}
+
+.mat-button-toggle {
+    ::ng-deep {
+        button:focus,
+        button:hover {
+            &::after {
+                // top:0;
+                // height: 100%;
+                // border: 3px solid var(--focusColor);
+                // width: 100%;
+                // right: 0;
+                // bottom: 0;
+                // left: 0;
+                // transform: none;
+                // border-radius: 0;
+                transform: translate(50%, -100px);
+            }
+        }
+    }
+}

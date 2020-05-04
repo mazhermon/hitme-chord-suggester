@@ -1,57 +1,39 @@
 //global styles
 // all other components will use view encapsulation
-
-// change these 2 so they're not using CSS imports :)
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-//@import url('https://fonts.googleapis.com/css?family=Anton');
-
-
+@import './app.material-theme.scss';
 @import './app-setup-styles';
 
-
-// end setup - move the above to a reset file
-
 :root {
-
     --font-serif: miller-banner, serif;
     --font-sans-serif: montserrat, sans-serif;
     --font-main: var(--font-sans-serif);
-    font-weight: 400;
+
     font-style: normal;
+    font-weight: 400;
+
     --font-weight: 400;
     --font-weight-bold: 700;
-
     --white: #f9f9f9;
     --black: #313331;
-
-    --blueDark: #151D5A;
-    --salmon: #FEA49F;
+    --blueDark: #151d5a;
     --green: cadetblue;
-    --greenLight: #89c3c5;
-    
+    --greenDark: #5b8588;
+    --greenLight: #82b8bb;
+    // --greenSuperLight: rgb(203, 241, 244);
+    --dark: #41585a;
+    --primary: var(--green);
+    --secondary: var(--greenDark);
+    --highlight: var(--greenLight);
+
     //meh?
     --gray-light: #c9cac9;
-    --gray-extra-light: #fafafa;
-    --blue1: #6CABFF;
-    --blue2: rgb(45, 98, 168);
-    
-    
-
-    --gradient1: linear-gradient(
-        -45deg,
-        var(--blueDark),
-        var(--black)
-    );
-
-    --gradient2: linear-gradient(
-        -45deg,
-        var(--blue1),
-        var(--blue2)
-    );
-
-    --shadow-layer-1: 0 -2px 16px rgba(0, 0, 0, 0.5);
+    --gray-extra-light: #e4e1e1;
+    // --blue1: #6cabff;
+    // --blue2: rgb(45, 98, 168);
+    --gradient1: linear-gradient(-45deg, var(--primary), var(--secondary));
+    --gradient2: linear-gradient(-45deg, var(--secondary), var(--highlight));
+    --shadow-layer-1: 0 -2px 16px rgba(0, 0, 0, 0.3);
     --shadow-layer-2: 0 -2px 8px rgba(0, 0, 0, 0.2);
-
     --border-radius: 4px;
     --border-radius-med: 30px;
     --border-radius-big: 55px;
@@ -59,11 +41,10 @@
 
 // typography base
 body {
-    font-family: var(--font-main);
-    font-weight: var(--font-weight);
-
     border: 3vw solid var(--white);
     border-bottom: 0;
+    font-family: var(--font-main);
+    font-weight: var(--font-weight);
 }
 
 button,
@@ -71,39 +52,33 @@ a {
     color: var(--white);
     text-decoration: none;
 
-    &:focus,
-    &:hover {
-        outline: none;
+    &:focus {
         position: relative;
-        text-decoration: underline;
-        &::after {
-            content: '';
-            background: var(--salmon);
-            height: 12px;
-            width: 12px;
-            border-radius: 50%;
-            top: 50%;
-            transform: translateY(-6px);
-            position: absolute;
-            left: -0.8rem;
-        }
+        color: var(--white);
+        outline: none;
     }
 }
 
-// a,
-// button {
-//     font-family: var(--font-interactive);
-// }
+a:hover {
+    text-decoration: underline;
+}
+
+h1,
+h2,
+h3 {
+    color: var(--white);
+    font-family: var(--font-serif);
+}
 
 app-root {
     position: relative;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 header {
+    z-index: 5;
     grid-column: 1 / -1;
     grid-row: 1 / span 1;
-    z-index: 5;
 }
 
 main {
@@ -116,12 +91,12 @@ footer {
 
 .app-root__container {
     height: 100%;
-    background: var(--green);
+    background: var(--gradient1);
 }
 
 .app-root__sidebar {
     width: 300px;
-    background: var(--green);
+    background: var(--primary);
     border-top-right-radius: var(--border-radius-med);
 
     @media screen and (max-width: 350px) {
@@ -130,18 +105,48 @@ footer {
 }
 
 .app-root__content {
-    padding: 3rem;
     position: relative;
+    padding: 1.5rem;
+
+    @media screen and (min-width: 500px) {
+        padding: 3rem;
+    }
 }
 
 .app-root__header {
     margin-bottom: 1rem;
 }
 
-.app-root__sidebar-toggle-button {
-    background: 0;
+.app-root__sidebar-toggle-button.app-root__sidebar-toggle-button {
+    position: relative;
+    width: 55px;
+    height: 55px;
+    padding: 14px;
     border: 0;
+    background: 0;
+    border-radius: 50%;
     fill: white;
+
+    &::before {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border: 2px solid var(--white);
+        border-radius: 50%;
+        content: '';
+        opacity: 0;
+        transform: scale(0.2);
+        transition: opacity 0.2s cubic-bezier(0.55, -0.26, 0.48, 1.32),
+            transform 0.2s cubic-bezier(0.55, -0.26, 0.35, 1.66);
+    }
+
+    &:focus::before {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .app-root__sidebar-toggle-button {
@@ -165,8 +170,16 @@ footer {
 }
 
 .app-root__sidebar-toggle-button-svg {
-    fill: var(--black);
     width: 1rem;
     margin-left: 0.8rem;
+    fill: var(--black);
 }
 
+.mat-form-field-appearance-legacy .mat-form-field-label {
+    color: var(--white);
+}
+
+.mat-dialog-title.mat-dialog-title {
+    font-family: var(--font-serif);
+    font-weight: bold;
+}

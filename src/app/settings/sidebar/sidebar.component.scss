@@ -3,49 +3,87 @@ hm-sidebar:host {
 }
 
 .sidebar__title {
-    font-weight: normal;
     font-size: 1rem;
+    font-weight: normal;
 }
 
 .sidebar__close-button {
-    color: var(--white);
-    background: 0;
-    border: 0;
     padding: 0.5rem;
-    transform: translateX(1.2rem)
+    border: 0;
+    background: none;
+    color: var(--white);
+    text-decoration: none;
+    transform: translateX(0.5rem);
+
+    &::before {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border: 1px solid var(--white);
+        border-top-right-radius: 20px;
+        content: '';
+        opacity: 0;
+        transform: translateX(-1rem);
+        transition: opacity 0.2s ease-in,
+            transform 0.3s cubic-bezier(0.55, -0.26, 0.35, 1.66) 0.1s;
+    }
+
+    &:focus::before {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .sidebar__toggle-button-svg {
-    fill: var(--white);
-    width: 12px;
-    height: 12px;
     position: relative;
     top: 3px;
+    width: 12px;
+    height: 12px;
     margin-left: 6px;
+    fill: var(--white);
 }
 
 .sidebar__nav-list {
-    list-style: none;
     padding: 0;
     margin: 0;
+    list-style: none;
 
     > li {
-        border-bottom: 1px solid var(--blueDark);
+        border-bottom: 1px solid var(--dark);
+
+        &:last-child {
+            border-bottom: none;
+        }
 
         a {
-            color: var(--white);
             display: block;
             padding: 1rem;
+            color: var(--white);
+            font-weight: bold;
             text-decoration: none;
 
-            &::after {
-                left: 0;
-                top: 0;
-                bottom: 0;
-                border-radius: 0;
-                transform: translateY(0);
-                width: 6px;
-                height: auto;
+            &:focus,
+            &:hover {
+                background-color: var(--highlight);
+            }
+
+            &:focus {
+                &::after {
+                    top: 0;
+                    right: -2px;
+                    bottom: 0;
+                    left: -2px;
+                    width: 100%;
+                    height: 100%;
+                    border-top: 1px solid white;
+                    border-bottom: 1px solid white;
+                    background: none;
+                    border-radius: 0;
+                    transform: translateY(0);
+                }
             }
         }
     }
