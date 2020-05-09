@@ -1,28 +1,26 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
-$blueDark: #151d5a;
-$salmon: #fea49f;
-$green: cadetblue;
-$greenDark: #5b8588;
-$greenLight: #82b8bb;
+$green: #83A085;
+$greenDark: #5B885E;
+$gray: #7E887C;
 
 $dark: #41585a;
 
 // TODO clean this up to simplify
 $brand-hitmegreen: (
-    50: #82b8bb,
-    100: #82b8bb,
-    200: cadetblue,
-    300: cadetblue,
-    400: #41585a,
+    50: $greenDark,
+    100: $greenDark,
+    200: $green,
+    300: $green,
+    400: $dark,
     500: white,
-    600: #41585a,
-    700: #41585a,
-    800: cadetblue,
-    A200: cadetblue,
-    A400: cadetblue,
-    A700: cadetblue,
+    600: $dark,
+    700: $dark,
+    800: $green,
+    A200: $green,
+    A400: $green,
+    A700: $green,
     contrast: (
         500: white,
         600: white,
