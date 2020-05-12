@@ -1,16 +1,16 @@
 # Welcome to the Hitme chord suggester
-A tool to make modal interchange (chord borrowing) a bit more fun and easy.
+
+A tool to make modal interchange (chord borrowing) a bit more fun and easy, or just to easily see which chords are in a certain key.
 
 https://hitme.mazhermon.com/
 
-Hi there, Hitme is my current pet project I use for general learning and to help me with my music hobby. Hitme is a music theory tool to help to identify more interesting chords you could use in your chord progressions.
+Hitme is a pet project I use for general learning and to help me with my music hobby. Hitme is a music theory tool to help to identify more interesting chords you could use in your chord progressions.
 
 Using the nashville numbering system, you enter a chord progression, like a II V I for instance, or a I IV V etc. This will give you the basic chords you'll need. Then hit 'hitme' to swap some of these chords out for chords borrowed from other modes. You can then try some of these out on your instrument and use the ones you like to help write your chord progressions.
 
 You'll see the names of the mode the chord has come from to help you understand how it's working.
 
 It's a simple tool that I find useful. Just for fun and very early days so far.
-
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
