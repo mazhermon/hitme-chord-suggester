@@ -12,7 +12,6 @@ import { MatDialog } from "@angular/material/dialog";
 import { SaveSongDialogComponent } from "./save-song-dialog/save-song-dialog.component";
 import { Song, SongService } from "../services/song.service";
 
-// move animation triggers to it's own file
 @Component({
   selector: "hm-hitme",
   templateUrl: "./hitme.component.html",
