@@ -1,16 +1,42 @@
 # Welcome to the Hitme chord suggester
 
-A tool to make modal interchange (chord borrowing) a bit more fun and easy, or just to easily see which chords are in a certain key.
+A tool to make [modal interchange](https://en.wikipedia.org/wiki/Borrowed_chord) (one type of chord borrowing) a bit more fun and easy, or just to easily see which chords are in a certain key.
 
 https://hitme.mazhermon.com/
 
-Hitme is a pet project I use for general learning and to help me with my music hobby. Hitme is a music theory tool to help to identify more interesting chords you could use in your chord progressions.
+Hitme is a pet project I use for general learning and to help me with my music hobby. Hitme is a music theory tool to help to identify more interesting chords you could use in your chord progressions. The original intention was just a quick reference, but I'll be adding the missing CRUD functinality soon as I'd find that useful.
 
-Using the nashville numbering system, you enter a chord progression, like a II V I for instance, or a I IV V etc. This will give you the basic chords you'll need. Then hit 'hitme' to swap some of these chords out for chords borrowed from other modes. You can then try some of these out on your instrument and use the ones you like to help write your chord progressions.
+## How it works
+Using the [nashville numbering system](https://en.wikipedia.org/wiki/Nashville_Number_System), you enter a chord progression, like a II V I for instance, or a I IV V etc. This will give you the basic chords you'll need. Then hit 'suggest' to swap some of these chords out for chords borrowed from other modes. You can then try some of these out on your instrument and use the ones you like to help write your chord progressions.
 
 You'll see the names of the mode the chord has come from to help you understand how it's working.
 
 It's a simple tool that I find useful. Just for fun and very early days so far.
+
+
+## Fun things used in here so far
+* Currently on Angular 9
+* CSS Grid
+* CSS custom properties
+* SCSS / SASS
+* A start on A11y conciderations (plenty of work to be done though)
+* Angular animations
+* SVG
+* Angular material and Custom UI controls as appropriate
+* local storage
+* NGRX state management
+* RXJS observables
+* Typescript
+* 
+* ...
+
+## Upcoming changes
+* CRUD options 
+* Firebase integration for better saving
+* Further a11y conciderations
+* Auth
+* Chord reordering
+* ...
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
