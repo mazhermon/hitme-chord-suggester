@@ -31,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroyed$))
       .subscribe((e: RouterEvent) => {
         if (e instanceof NavigationEnd && !this._firstLoad) {
-          this.onAnyRouteChange();
+          // fix this later, happens too much // this.onAnyRouteChange();
         }
 
         if (e instanceof NavigationEnd && this._firstLoad) {

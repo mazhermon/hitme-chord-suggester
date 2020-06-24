@@ -1,4 +1,4 @@
-.hm-song__header {
+:host {
     display: flex;
     justify-content: center;
     margin: 0 8px;
@@ -17,8 +17,8 @@
     }
 
     @media screen and (min-width: 650px) {
-        transform: translateY(-60px);
         margin: 0 10%;
+        transform: translateY(-60px);
 
         &::before,
         &::after {
@@ -28,7 +28,7 @@
     }
 }
 
-.hm-song__title {
+.hm-song-title__heading {
     position: relative;
     width: auto;
     margin: 0 14px 40px;

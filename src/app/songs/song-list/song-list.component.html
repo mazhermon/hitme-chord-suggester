@@ -3,7 +3,7 @@
     <ng-container *ngIf="songs.length > 0; else noSongs"></ng-container>
     <ul class="song-list__songs" >
         <li *ngFor="let song of songs">
-            <a [routerLink]="['/songs', song.name]">{{song.name}}</a>
+            <a [routerLink]="['/songs', song?.name]">{{song.name}}</a>
         </li>
     </ul>
     <ng-template #noSongs>

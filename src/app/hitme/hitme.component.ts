@@ -11,6 +11,7 @@ import { takeUntil, take, filter } from "rxjs/operators";
 import { MatDialog } from "@angular/material/dialog";
 import { SaveSongDialogComponent } from "./save-song-dialog/save-song-dialog.component";
 import { Song, SongService } from "../services/song.service";
+import { ActivatedRoute } from "@angular/router";
 
 // move animation triggers to it's own file
 @Component({
@@ -67,11 +68,12 @@ export class HitmeComponent implements OnInit, OnDestroy {
   // change this to use state and do from the app component
   //@HostBinding('class.hm-hitme--gradient-overlay-active')
   public inputMode: boolean;
-  public songName = "";
+  public songName: string;
 
   constructor(
     private store: Store<fromHitMe.HitMeState>,
-    public saveSongDialog: MatDialog
+    public saveSongDialog: MatDialog,
+    public route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -79,7 +81,7 @@ export class HitmeComponent implements OnInit, OnDestroy {
       .pipe(select(fromHitMe.getUserChords), takeUntil(this.destoryed$))
       .subscribe(userChords => {
         this.userChords = userChords;
-        this.store.dispatch(new hitMeActions.ToggleInputMode(true));
+        // this.store.dispatch(new hitMeActions.ToggleInputMode(true));
       });
 
     this.hitmeChordsSubscription = this.store
@@ -89,11 +91,13 @@ export class HitmeComponent implements OnInit, OnDestroy {
     this.inputModeSubscription = this.store
       .pipe(select(fromHitMe.getUserInputMode), takeUntil(this.destoryed$))
       .subscribe(inputMode => (this.inputMode = inputMode));
+
+    this.songName = this.route.snapshot.paramMap.get("name");
   }
 
   onHitMe(): void {
     let progression = [...this.userChords];
-    this.store.dispatch(new hitMeActions.ToggleInputMode(false));
+    // this.store.dispatch(new hitMeActions.ToggleInputMode(false));
     this.store.dispatch(new hitMeActions.BorrowChords(progression));
   }
 
@@ -102,13 +106,13 @@ export class HitmeComponent implements OnInit, OnDestroy {
   }
 
   onReset(): void {
-    this.store.dispatch(new hitMeActions.ToggleInputMode(true));
+    // this.store.dispatch(new hitMeActions.ToggleInputMode(true));
     this.store.dispatch(new hitMeActions.ResetChords());
   }
 
   openSaveSongDialog(): void {
     const dialogRef = this.saveSongDialog.open(SaveSongDialogComponent, {
-      width: "300px",
+      width: "350px",
       data: { songName: this.songName }
     });
 

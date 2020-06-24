@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { SongComponent } from "./song.component";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { SongService } from "../services/song.service";
+import { SongService } from "../../services/song.service";
 import { of } from "rxjs";
 
 describe("SongComponent", () => {

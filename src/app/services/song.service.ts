@@ -34,22 +34,34 @@ export class SongService {
       select(fromHitMe.getHitMeSongs),
       take(1),
       map(songs => {
-        let songToReturn = songs.find(song => song.name === name);
-        return songToReturn;
+        return songs.find(song => song?.name === name);
       })
     );
   }
 
-  saveSong(song): Observable<Song> {
+  saveSong(songToSave): Observable<Array<Song>> {
     return this._store.pipe(
       select(fromHitMe.getHitMeSongs),
       take(1),
       switchMap(songs => {
-        let songsToSave = [...songs, song];
-        // Save to local storage
-        localStorage.setItem("hmlocalsongs", JSON.stringify(songsToSave));
-        // TODO save song to mongo or Firebase DB TODO ===
-        return of(song);
+        let allSongsToSave: Array<Song>;
+        let songAlreadyExists: boolean = !!songs.filter(
+          existingSong => existingSong.name === songToSave.name
+        ).length;
+
+        if (songAlreadyExists) {
+          allSongsToSave = [...songs];
+          let updatedSongsToSave = songs.map((song, index) => {
+            return songs[index] = song.name === songToSave.name ? songToSave : song;
+          })
+          allSongsToSave = [...updatedSongsToSave];
+
+        } else {
+          allSongsToSave = [...songs, songToSave];
+        }
+        
+        localStorage.setItem("hmlocalsongs", JSON.stringify(allSongsToSave));
+        return of(allSongsToSave);
       })
     );
   }

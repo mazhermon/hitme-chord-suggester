@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SongService, Song } from '../services/song.service';
+import { SongService, Song } from '../../services/song.service';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import * as fromHitMe from '../hitme/state/hitme.reducer'
+import * as fromHitMe from '../../hitme/state/hitme.reducer'
 import { take } from 'rxjs/operators';
 
 

@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router, ParamMap } from "@angular/router";
-import { Song, SongService } from "../services/song.service";
+import { Song, SongService } from "../../services/song.service";
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
 
-import * as hitMeActions from "../hitme/state/hitme.actions";
-import * as fromHitMe from "../hitme/state/hitme.reducer";
+import * as hitMeActions from "../../hitme/state/hitme.actions";
+import * as fromHitMe from "../../hitme/state/hitme.reducer";
 import { take } from "rxjs/operators";
 
 @Component({
@@ -29,8 +29,6 @@ export class SongComponent implements OnInit {
   getSong(): void {
     const name = this.route.snapshot.paramMap.get("name");
     this.song$ = this.songService.getSong(name);
-
-    // add user song to state so it can go to edit?
 
     this.song$
       .pipe(take(1))

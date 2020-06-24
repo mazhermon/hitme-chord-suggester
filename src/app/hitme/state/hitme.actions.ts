@@ -54,7 +54,7 @@ export class SaveSong {
 
 export class SaveSongSuccess {
   readonly type = HitMeActionTypes.SaveSongSuccess;
-  constructor(public payload: Song) {}
+  constructor(public payload: Array<Song>) {}
   // TODO listen in reducer and add this song to state as currentSong
 }
 

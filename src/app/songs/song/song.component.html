@@ -1,0 +1,8 @@
+<ng-container *ngIf="song$ | async as song">
+    <hm-song-title [songname]="song.name"></hm-song-title>
+    <hm-chord-display [displayChords]="song.chords"></hm-chord-display>
+
+    <a [routerLink]="['edit']">Edit</a>
+</ng-container>
+
+
